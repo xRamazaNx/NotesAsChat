@@ -9,6 +9,6 @@ class NoteHolder(
 ) : AbstractHolder<Note, NoteViewBinding>(binding) {
     override fun bind(t: Note, clickListener: ClickListener<Note>) {
         super.bind(t, clickListener)
-        binding.note.text = t.body
+        t.bind(NoteViewBinder(binding))
     }
 }

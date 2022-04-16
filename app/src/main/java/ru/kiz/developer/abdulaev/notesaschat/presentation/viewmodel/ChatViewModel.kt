@@ -3,6 +3,9 @@ package ru.kiz.developer.abdulaev.notesaschat.presentation.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import ru.kiz.developer.abdulaev.notesaschat.domain.model.Chat
 import ru.kiz.developer.abdulaev.notesaschat.domain.interact.ChatInteract
 import ru.kiz.developer.abdulaev.notesaschat.domain.usecase.adding.AddChatCase
@@ -20,8 +23,10 @@ abstract class ChatViewModel : ViewModel(), ViewModelInterface<Chat> {
         }
 
         override fun showAll() {
-            val chats = chatInteract.allChats()
-            showAllLiveData.postValue(chats)
+            viewModelScope.launch(Dispatchers.IO) {
+                val chats = chatInteract.allChats()
+                showAllLiveData.postValue(chats)
+            }
         }
     }
 

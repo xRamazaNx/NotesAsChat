@@ -9,7 +9,6 @@ class ChatHolder(
 ) : AbstractHolder<Chat, ChatViewBinding>(binding) {
     override fun bind(t: Chat, clickListener: ClickListener<Chat>) {
         super.bind(t, clickListener)
-        binding.chatName.text = t.name
-        binding.lastNote.text = t.lastNote
+        t.bind(ChatViewBinder(binding))
     }
 }

@@ -26,7 +26,7 @@ class NoteAdapter(
         }
 
         override fun areContentsTheSame(oldItem: Note, newItem: Note): Boolean {
-            return oldItem.body == newItem.body
+            return oldItem.isEqualContent(newItem)
         }
     }
 }
