@@ -1,2 +1,2 @@
 # NotesAsChat
-The application for creating notes as the chat view.
+The application for creating notes as the chat.
