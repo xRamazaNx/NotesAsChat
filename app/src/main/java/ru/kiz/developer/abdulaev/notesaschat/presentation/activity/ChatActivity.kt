@@ -40,6 +40,10 @@ class ChatActivity : AppCompatActivity(), AbstractHolder.ClickListener<Chat> {
         )
         recycler.adapter = adapter
 
+        binding.addChatBtn.setOnClickListener {
+            viewModel.addNewChat("New chat of notes")
+        }
+
         viewModel.showAllLiveData.observe(this) { chats ->
             adapter.setList(chats)
         }

@@ -17,9 +17,11 @@ abstract class ChatViewModel : ViewModel(), ViewModelInterface<Chat> {
     ) : ChatViewModel() {
         override val showAllLiveData = MutableLiveData<List<Chat>>()
         override fun addNewChat(name: String) {
-            val addChatCase = AddChatCase(name, chatInteract)
-            val chat = addChatCase.execute()
-            update(chat)
+            viewModelScope.launch(Dispatchers.IO) {
+                val addChatCase = AddChatCase(name, chatInteract)
+                val chat = addChatCase.execute()
+                update(chat)
+            }
         }
 
         override fun showAll() {
