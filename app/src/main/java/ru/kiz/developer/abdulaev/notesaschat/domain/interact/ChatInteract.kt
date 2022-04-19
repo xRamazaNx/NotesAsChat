@@ -1,6 +1,6 @@
 package ru.kiz.developer.abdulaev.notesaschat.domain.interact
 
-import ru.kiz.developer.abdulaev.notesaschat.data.ChatEntity
+import ru.kiz.developer.abdulaev.notesaschat.data.entity.ChatEntity
 import ru.kiz.developer.abdulaev.notesaschat.data.repo.ChatStore
 import ru.kiz.developer.abdulaev.notesaschat.data.repo.NoteStore
 import ru.kiz.developer.abdulaev.notesaschat.domain.model.Chat

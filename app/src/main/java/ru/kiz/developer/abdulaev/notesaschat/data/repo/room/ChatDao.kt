@@ -2,7 +2,7 @@ package ru.kiz.developer.abdulaev.notesaschat.data.repo.room
 
 import androidx.room.*
 import androidx.room.OnConflictStrategy.*
-import ru.kiz.developer.abdulaev.notesaschat.data.ChatEntity
+import ru.kiz.developer.abdulaev.notesaschat.data.entity.ChatEntity
 
 @Dao
 interface ChatDao : DataDao<ChatEntity> {

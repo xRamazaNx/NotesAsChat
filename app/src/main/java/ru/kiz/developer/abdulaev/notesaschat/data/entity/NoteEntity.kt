@@ -1,4 +1,4 @@
-package ru.kiz.developer.abdulaev.notesaschat.data
+package ru.kiz.developer.abdulaev.notesaschat.data.entity
 
 import androidx.room.Entity
 import androidx.room.ForeignKey

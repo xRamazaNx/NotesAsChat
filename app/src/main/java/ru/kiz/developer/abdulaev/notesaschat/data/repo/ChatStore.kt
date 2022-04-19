@@ -1,6 +1,6 @@
 package ru.kiz.developer.abdulaev.notesaschat.data.repo
 
-import ru.kiz.developer.abdulaev.notesaschat.data.ChatEntity
+import ru.kiz.developer.abdulaev.notesaschat.data.entity.ChatEntity
 import ru.kiz.developer.abdulaev.notesaschat.data.repo.room.ChatDao
 
 abstract class ChatStore(

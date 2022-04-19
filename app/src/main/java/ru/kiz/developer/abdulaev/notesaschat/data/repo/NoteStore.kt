@@ -1,6 +1,6 @@
 package ru.kiz.developer.abdulaev.notesaschat.data.repo
 
-import ru.kiz.developer.abdulaev.notesaschat.data.NoteEntity
+import ru.kiz.developer.abdulaev.notesaschat.data.entity.NoteEntity
 import ru.kiz.developer.abdulaev.notesaschat.data.repo.room.NoteDao
 
 abstract class NoteStore(

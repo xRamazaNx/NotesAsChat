@@ -5,7 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
-import ru.kiz.developer.abdulaev.notesaschat.data.NoteEntity
+import ru.kiz.developer.abdulaev.notesaschat.data.entity.NoteEntity
 
 @Dao
 interface NoteDao : DataDao<NoteEntity> {
