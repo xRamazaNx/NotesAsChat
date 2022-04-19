@@ -3,6 +3,7 @@ package ru.kiz.developer.abdulaev.notesaschat.data
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import ru.kiz.developer.abdulaev.notesaschat.core.ID
 
 @Entity(
     foreignKeys = [
@@ -18,7 +19,7 @@ import androidx.room.PrimaryKey
 data class NoteEntity(
     val chatId: Long,
     val body: String
-) {
+) : ID {
     @PrimaryKey(autoGenerate = true)
-    var id: Long = 0L
+    override var id: Long = 0L
 }

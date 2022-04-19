@@ -1,13 +1,14 @@
 package ru.kiz.developer.abdulaev.notesaschat.domain.model
 
+import ru.kiz.developer.abdulaev.notesaschat.core.ID
 import ru.kiz.developer.abdulaev.notesaschat.data.NoteEntity
 import ru.kiz.developer.abdulaev.notesaschat.domain.Binder
 import ru.kiz.developer.abdulaev.notesaschat.domain.Binder.DataBinder
 
 data class Note(
-    val id: Long,
+    override val id: Long,
     private val body: String
-) : Binder<DataBinder.NoteBinder>, ContentEqual<Note> {
+) : ID, Binder<DataBinder.NoteBinder>, ContentEqual {
     constructor(
         noteEntity: NoteEntity
     ) : this(noteEntity.id, noteEntity.body)
@@ -16,7 +17,9 @@ data class Note(
         binder.bind(body)
     }
 
-    override fun isEqualContent(content: Note): Boolean {
+    override fun isEqualContent(content: ContentEqual): Boolean {
+        if (content !is Note)
+            return false
         return body == content.body
     }
 }
