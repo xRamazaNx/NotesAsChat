@@ -1,13 +1,12 @@
 package ru.kiz.developer.abdulaev.notesaschat.presentation.view
 
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import androidx.viewbinding.ViewBinding
+import ru.kiz.developer.abdulaev.notesaschat.domain.model.ContentEqual
+import ru.kiz.developer.abdulaev.notesaschat.presentation.utils.DiffUtilCallback
 
-abstract class AbstractAdapter<T, B : ViewBinding, VH : AbstractHolder<T>>(
-    private val clickListener: AbstractHolder.ClickListener<T>,
-    diffCallback: DiffUtil.ItemCallback<T>
-) : ListAdapter<T, VH>(diffCallback) {
+abstract class AbstractAdapter<T : ContentEqual, VH : AbstractHolder<T>>(
+    private val clickListener: AbstractHolder.ClickListener<T>
+) : ListAdapter<T, VH>(DiffUtilCallback<T>()) {
 
     fun setList(list: List<T>) = submitList(list)
 
