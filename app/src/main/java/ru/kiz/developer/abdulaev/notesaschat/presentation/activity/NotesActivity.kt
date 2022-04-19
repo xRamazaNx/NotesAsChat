@@ -43,6 +43,13 @@ class NotesActivity : AppCompatActivity(), AbstractHolder.ClickListener<Note> {
         )
         recycler.adapter = adapter
 
+        binding.send.setOnClickListener {
+            val editText = binding.inputEditText
+            val newNote = editText.text.toString()
+            editText.setText("")
+            viewModel.addNewNote(newNote)
+        }
+
         viewModel.showAllLiveData.observe(this) { notes ->
             adapter.setList(notes)
         }

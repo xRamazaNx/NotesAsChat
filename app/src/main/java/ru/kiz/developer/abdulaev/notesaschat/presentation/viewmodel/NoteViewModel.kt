@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import ru.kiz.developer.abdulaev.notesaschat.domain.interact.NoteInteract
@@ -11,16 +12,26 @@ import ru.kiz.developer.abdulaev.notesaschat.domain.model.Note
 import ru.kiz.developer.abdulaev.notesaschat.domain.usecase.adding.AddNoteCase
 
 abstract class NoteViewModel : ViewModel(), ViewModelInterface<Note> {
-    abstract fun addNewNote(body: String)
+    abstract fun addNewNote(
+        body: String,
+        dispatcher: CoroutineDispatcher = Dispatchers.IO
+    )
 
     private class Base(
         private val noteInteract: NoteInteract
     ) : NoteViewModel() {
         override val showAllLiveData = MutableLiveData<List<Note>>()
-        override fun addNewNote(body: String) {
-            val addNoteCase = AddNoteCase(body, noteInteract)
-            val note = addNoteCase.execute()
-            update(note)
+        override fun addNewNote(
+            body: String,
+            dispatcher: CoroutineDispatcher
+        ) {
+            if (body.isNotBlank()) {
+                viewModelScope.launch(dispatcher) {
+                    val addNoteCase = AddNoteCase(body, noteInteract)
+                    val note: Note = addNoteCase.execute()
+                    update(note)
+                }
+            }
         }
 
         override fun showAll() {

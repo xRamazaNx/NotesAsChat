@@ -9,9 +9,45 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/inputContainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/inputContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:panelColorBackground"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <EditText
+            android:id="@+id/inputEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:autofillHints=""
+            android:background="@color/transparent"
+            android:hint="@string/notification"
+            android:inputType="text|textMultiLine"
+            android:maxLines="5"
+            android:minHeight="56dp"
+            android:padding="16dp"
+            tools:ignore="LabelFor" />
+
+        <ImageButton
+            android:id="@+id/send"
+            android:layout_width="56dp"
+            android:layout_height="match_parent"
+            android:background="?selectableItemBackground"
+            android:contentDescription="Send notification"
+            android:src="@drawable/ic_send"
+            app:tint="?buttonTint"
+            tools:ignore="HardcodedText" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

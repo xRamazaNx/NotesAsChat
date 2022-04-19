@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">NotesAsChat</string>
+    <string name="notification">Notification</string>
 </resources>
