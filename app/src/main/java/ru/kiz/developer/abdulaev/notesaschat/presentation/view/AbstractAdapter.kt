@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.viewbinding.ViewBinding
 
-abstract class AbstractAdapter<T, B : ViewBinding, VH : AbstractHolder<T, B>>(
+abstract class AbstractAdapter<T, B : ViewBinding, VH : AbstractHolder<T>>(
     private val clickListener: AbstractHolder.ClickListener<T>,
     diffCallback: DiffUtil.ItemCallback<T>
 ) : ListAdapter<T, VH>(diffCallback) {
