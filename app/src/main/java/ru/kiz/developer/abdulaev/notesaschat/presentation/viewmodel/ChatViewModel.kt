@@ -7,23 +7,29 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import ru.kiz.developer.abdulaev.notesaschat.domain.model.Chat
 import ru.kiz.developer.abdulaev.notesaschat.domain.interact.ChatInteractor
-import ru.kiz.developer.abdulaev.notesaschat.domain.usecase.adding.AddChatCase
+import ru.kiz.developer.abdulaev.notesaschat.domain.model.Chat
+import ru.kiz.developer.abdulaev.notesaschat.domain.usecase.AddUseCase
 import ru.kiz.developer.abdulaev.notesaschat.presentation.presenter.ChatPresenter
 
 abstract class ChatViewModel : ViewModelInterface<Chat, ChatPresenter>() {
-    abstract fun addNewChat(name: String, dispatcher: CoroutineDispatcher = Dispatchers.IO)
+    abstract fun addNewChat(
+        addChatCase: AddUseCase<Chat, ChatInteractor>,
+        dispatcher: CoroutineDispatcher = Dispatchers.IO
+    )
+
     private class Base(
         private val chatInteractor: ChatInteractor
     ) : ChatViewModel() {
         override val showAllLiveData = MutableLiveData<List<Chat>>()
         override var presenter: ChatPresenter? = null
 
-        override fun addNewChat(name: String, dispatcher: CoroutineDispatcher) {
+        override fun addNewChat(
+            addChatCase: AddUseCase<Chat, ChatInteractor>,
+            dispatcher: CoroutineDispatcher
+        ) {
             viewModelScope.launch(dispatcher) {
-                val addChatCase = AddChatCase(name, chatInteractor)
-                val chat = addChatCase.execute()
+                val chat = addChatCase.execute(chatInteractor)
                 val updatedList = updatedDataList(chat)
                 updateUI(updatedList)
                 scrollToLast(updatedList)

@@ -9,35 +9,36 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import ru.kiz.developer.abdulaev.notesaschat.domain.interact.NoteInteractor
 import ru.kiz.developer.abdulaev.notesaschat.domain.model.Note
-import ru.kiz.developer.abdulaev.notesaschat.domain.usecase.adding.AddNoteCase
+import ru.kiz.developer.abdulaev.notesaschat.domain.usecase.AddUseCase
 import ru.kiz.developer.abdulaev.notesaschat.presentation.presenter.NotePresenter
 
 abstract class NoteViewModel : ViewModelInterface<Note, NotePresenter>() {
-    abstract fun addNewNote(dispatcher: CoroutineDispatcher = Dispatchers.IO)
+    abstract fun addNewNote(
+        addNoteCase: AddUseCase<Note, NoteInteractor>,
+        dispatcher: CoroutineDispatcher = Dispatchers.IO
+    )
 
     private class Base(
-        private val noteInteract: NoteInteractor
+        private val noteInteractor: NoteInteractor
     ) : NoteViewModel() {
         override val showAllLiveData = MutableLiveData<List<Note>>()
         override var presenter: NotePresenter? = null
 
         override fun addNewNote(
+            addNoteCase: AddUseCase<Note, NoteInteractor>,
             dispatcher: CoroutineDispatcher
         ) {
-            val presenter = this.presenter ?: return
-            val body = presenter.noteBody()
             viewModelScope.launch(dispatcher) {
-                val note = AddNoteCase(body, noteInteract).execute()
+                val note = addNoteCase.execute(noteInteractor)
                 val updatedList = updatedDataList(note)
                 updateUI(updatedList)
                 scrollToLast(updatedList)
             }
-            presenter.clearBody()
         }
 
         override fun showAll(dispatcher: CoroutineDispatcher) {
             viewModelScope.launch(dispatcher) {
-                updateUI(noteInteract.allNotes())
+                updateUI(noteInteractor.allNotes())
             }
         }
     }
