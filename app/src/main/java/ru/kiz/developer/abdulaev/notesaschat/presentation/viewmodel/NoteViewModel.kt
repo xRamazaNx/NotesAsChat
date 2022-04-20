@@ -26,16 +26,13 @@ abstract class NoteViewModel : ViewModelInterface<Note, NotePresenter>() {
         ) {
             val presenter = this.presenter ?: return
             val body = presenter.noteBody()
-            if (body.isNotBlank()) {
-                viewModelScope.launch(dispatcher) {
-                    val addNoteCase = AddNoteCase(body, noteInteract)
-                    val note: Note = addNoteCase.execute()
-                    val updatedList = updatedDataList(note)
-                    updateUI(updatedList)
-                    scrollToLast(updatedList)
-                }
-                presenter.clearBody()
+            viewModelScope.launch(dispatcher) {
+                val note = AddNoteCase(body, noteInteract).execute()
+                val updatedList = updatedDataList(note)
+                updateUI(updatedList)
+                scrollToLast(updatedList)
             }
+            presenter.clearBody()
         }
 
         override fun showAll(dispatcher: CoroutineDispatcher) {
