@@ -7,7 +7,7 @@ import ru.kiz.developer.abdulaev.notesaschat.presentation.view.AbstractHolder
 
 class NoteHolder(
     view: View
-) : AbstractHolder<Note>(view), NotePresenter {
+) : AbstractHolder<Note>(view), NoteViewPresenter {
     private val binding = NoteViewBinding.bind(view)
 
     override fun bind(t: Note, clickListener: ClickListener<Note>) {

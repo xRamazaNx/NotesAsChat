@@ -10,6 +10,7 @@ import ru.kiz.developer.abdulaev.notesaschat.data.repo.room.Room
 import ru.kiz.developer.abdulaev.notesaschat.databinding.ActivityNotesBinding
 import ru.kiz.developer.abdulaev.notesaschat.domain.interact.NoteInteract
 import ru.kiz.developer.abdulaev.notesaschat.domain.model.Note
+import ru.kiz.developer.abdulaev.notesaschat.presentation.presenter.NotePresenter
 import ru.kiz.developer.abdulaev.notesaschat.presentation.view.AbstractHolder
 import ru.kiz.developer.abdulaev.notesaschat.presentation.view.note.NoteAdapter
 import ru.kiz.developer.abdulaev.notesaschat.presentation.viewmodel.NoteViewModel
@@ -44,12 +45,10 @@ class NotesActivity : AppCompatActivity(), AbstractHolder.ClickListener<Note> {
         recycler.adapter = adapter
 
         binding.send.setOnClickListener {
-            val editText = binding.inputEditText
-            val newNote = editText.text.toString()
-            editText.setText("")
-            viewModel.addNewNote(newNote)
+            viewModel.addNewNote()
         }
 
+        viewModel.setPresenter(NotePresenter.Base(binding))
         viewModel.showAllLiveData.observe(this) { notes ->
             adapter.setList(notes)
         }

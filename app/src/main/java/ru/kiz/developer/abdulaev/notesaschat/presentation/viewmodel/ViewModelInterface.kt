@@ -5,12 +5,12 @@ import androidx.lifecycle.MutableLiveData
 interface ViewModelInterface<T> {
     val showAllLiveData: MutableLiveData<List<T>>
     fun showAll()
-    fun update(item: T) {
+    fun updatedDataList(item: T): List<T> {
         val newList = mutableListOf<T>()
         showAllLiveData.value?.let { noteList ->
             newList.addAll(noteList)
         }
         newList.add(item)
-        showAllLiveData.postValue(newList.toList())
+        return newList
     }
 }

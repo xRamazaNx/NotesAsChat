@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import ru.kiz.developer.abdulaev.notesaschat.domain.model.Chat
 import ru.kiz.developer.abdulaev.notesaschat.domain.interact.ChatInteract
 import ru.kiz.developer.abdulaev.notesaschat.domain.usecase.adding.AddChatCase
@@ -20,7 +21,10 @@ abstract class ChatViewModel : ViewModel(), ViewModelInterface<Chat> {
             viewModelScope.launch(Dispatchers.IO) {
                 val addChatCase = AddChatCase(name, chatInteract)
                 val chat = addChatCase.execute()
-                update(chat)
+                val updatedList = updatedDataList(chat)
+                withContext(Dispatchers.Main) {
+                    showAllLiveData.value = updatedList
+                }
             }
         }
 
