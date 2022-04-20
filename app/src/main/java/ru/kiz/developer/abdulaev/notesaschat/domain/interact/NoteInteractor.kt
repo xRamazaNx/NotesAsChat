@@ -1,18 +1,18 @@
 package ru.kiz.developer.abdulaev.notesaschat.domain.interact
 
+import ru.kiz.developer.abdulaev.notesaschat.core.Repository
 import ru.kiz.developer.abdulaev.notesaschat.data.entity.NoteEntity
-import ru.kiz.developer.abdulaev.notesaschat.data.repo.NoteStore
 import ru.kiz.developer.abdulaev.notesaschat.domain.model.Note
 
-interface NoteInteract : Interact {
+interface NoteInteractor : Interactor {
     fun note(id: Long): Note?
     fun allNotes(): List<Note>
     fun addNote(body: String): Note
 
     class Base(
         private val chatId: Long,
-        private val noteStore: NoteStore
-    ) : NoteInteract {
+        private val noteStore: Repository.NoteRepo<NoteEntity>
+    ) : NoteInteractor {
 
         override fun note(id: Long): Note? {
             return noteStore.getById(id)?.let { noteEntity ->

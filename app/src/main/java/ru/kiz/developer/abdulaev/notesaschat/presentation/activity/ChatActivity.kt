@@ -10,7 +10,7 @@ import ru.kiz.developer.abdulaev.notesaschat.data.repo.ChatStore
 import ru.kiz.developer.abdulaev.notesaschat.data.repo.NoteStore
 import ru.kiz.developer.abdulaev.notesaschat.data.repo.room.Room
 import ru.kiz.developer.abdulaev.notesaschat.databinding.ActivityChatBinding
-import ru.kiz.developer.abdulaev.notesaschat.domain.interact.ChatInteract
+import ru.kiz.developer.abdulaev.notesaschat.domain.interact.ChatInteractor
 import ru.kiz.developer.abdulaev.notesaschat.domain.model.Chat
 import ru.kiz.developer.abdulaev.notesaschat.presentation.intent_filler.OpenChatIntentFiller
 import ru.kiz.developer.abdulaev.notesaschat.presentation.presenter.ChatPresenter
@@ -55,9 +55,9 @@ class ChatActivity : AppCompatActivity(), AbstractHolder.ClickListener<Chat> {
 
     private fun chatViewModelFactory(): ChatViewModel.ChatViewModelFactory {
         val room = Room.get(this)
-        val noteStore = NoteStore.Base(room.noteDao())
-        val chatStore = ChatStore.Base(room.chatDao())
-        val chatInteract = ChatInteract.Base(chatStore, noteStore)
-        return ChatViewModel.ChatViewModelFactory(chatInteract)
+        val noteStore = NoteStore(room.noteDao())
+        val chatStore = ChatStore(room.chatDao())
+        val chatInteractor = ChatInteractor.Base(chatStore, noteStore)
+        return ChatViewModel.ChatViewModelFactory(chatInteractor)
     }
 }

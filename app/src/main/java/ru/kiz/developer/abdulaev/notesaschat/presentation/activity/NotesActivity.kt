@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import ru.kiz.developer.abdulaev.notesaschat.data.repo.NoteStore
 import ru.kiz.developer.abdulaev.notesaschat.data.repo.room.Room
 import ru.kiz.developer.abdulaev.notesaschat.databinding.ActivityNotesBinding
-import ru.kiz.developer.abdulaev.notesaschat.domain.interact.NoteInteract
+import ru.kiz.developer.abdulaev.notesaschat.domain.interact.NoteInteractor
 import ru.kiz.developer.abdulaev.notesaschat.domain.model.Note
 import ru.kiz.developer.abdulaev.notesaschat.presentation.presenter.NotePresenter
 import ru.kiz.developer.abdulaev.notesaschat.presentation.view.AbstractHolder
@@ -24,8 +24,8 @@ class NotesActivity : AppCompatActivity(), AbstractHolder.ClickListener<Note> {
         ActivityNotesBinding.inflate(layoutInflater)
     }
     private val viewModel by viewModels<NoteViewModel> {
-        val noteStore = NoteStore.Base(Room.get(this).noteDao())
-        val chatInteract = NoteInteract.Base(chatId, noteStore)
+        val noteStore = NoteStore(Room.get(this).noteDao())
+        val chatInteract = NoteInteractor.Base(chatId, noteStore)
         NoteViewModel.NoteViewModelFactory(chatInteract)
     }
     private val adapter = NoteAdapter(this)

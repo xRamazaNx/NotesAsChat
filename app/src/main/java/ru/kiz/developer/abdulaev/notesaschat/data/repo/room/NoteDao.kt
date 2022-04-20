@@ -5,10 +5,11 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
+import ru.kiz.developer.abdulaev.notesaschat.core.Repository
 import ru.kiz.developer.abdulaev.notesaschat.data.entity.NoteEntity
 
 @Dao
-interface NoteDao : DataDao<NoteEntity> {
+interface NoteDao : Repository<NoteEntity> {
     @Query("Select * FROM NoteEntity where id = :id")
     override fun getById(id: Long): NoteEntity
 

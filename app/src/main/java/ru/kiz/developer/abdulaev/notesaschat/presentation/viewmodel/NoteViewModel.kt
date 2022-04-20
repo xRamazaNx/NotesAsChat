@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import ru.kiz.developer.abdulaev.notesaschat.domain.interact.NoteInteract
+import ru.kiz.developer.abdulaev.notesaschat.domain.interact.NoteInteractor
 import ru.kiz.developer.abdulaev.notesaschat.domain.model.Note
 import ru.kiz.developer.abdulaev.notesaschat.domain.usecase.adding.AddNoteCase
 import ru.kiz.developer.abdulaev.notesaschat.presentation.presenter.NotePresenter
@@ -16,7 +16,7 @@ abstract class NoteViewModel : ViewModelInterface<Note, NotePresenter>() {
     abstract fun addNewNote(dispatcher: CoroutineDispatcher = Dispatchers.IO)
 
     private class Base(
-        private val noteInteract: NoteInteract
+        private val noteInteract: NoteInteractor
     ) : NoteViewModel() {
         override val showAllLiveData = MutableLiveData<List<Note>>()
         override var presenter: NotePresenter? = null
@@ -43,7 +43,7 @@ abstract class NoteViewModel : ViewModelInterface<Note, NotePresenter>() {
     }
 
     class NoteViewModelFactory(
-        private val noteInteract: NoteInteract
+        private val noteInteract: NoteInteractor
     ) : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel> create(modelClass: Class<T>): T {

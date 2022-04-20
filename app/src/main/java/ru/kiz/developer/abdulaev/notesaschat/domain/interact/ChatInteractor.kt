@@ -1,19 +1,19 @@
 package ru.kiz.developer.abdulaev.notesaschat.domain.interact
 
+import ru.kiz.developer.abdulaev.notesaschat.core.Repository
 import ru.kiz.developer.abdulaev.notesaschat.data.entity.ChatEntity
-import ru.kiz.developer.abdulaev.notesaschat.data.repo.ChatStore
-import ru.kiz.developer.abdulaev.notesaschat.data.repo.NoteStore
+import ru.kiz.developer.abdulaev.notesaschat.data.entity.NoteEntity
 import ru.kiz.developer.abdulaev.notesaschat.domain.model.Chat
 
-interface ChatInteract : Interact {
+interface ChatInteractor : Interactor {
     fun chat(id: Long): Chat?
     fun allChats(): List<Chat>
     fun addChat(name: String): Chat
 
     class Base(
-        private val chatStore: ChatStore,
-        private val noteStore: NoteStore
-    ) : ChatInteract {
+        private val chatStore: Repository.ChatRepo<ChatEntity>,
+        private val noteStore: Repository.NoteRepo<NoteEntity>
+    ) : ChatInteractor {
         override fun chat(id: Long): Chat? {
             return chatStore.getById(id)?.let { chatEntity ->
                 mapToChat(chatEntity)

@@ -2,10 +2,11 @@ package ru.kiz.developer.abdulaev.notesaschat.data.repo.room
 
 import androidx.room.*
 import androidx.room.OnConflictStrategy.*
+import ru.kiz.developer.abdulaev.notesaschat.core.Repository
 import ru.kiz.developer.abdulaev.notesaschat.data.entity.ChatEntity
 
 @Dao
-interface ChatDao : DataDao<ChatEntity> {
+interface ChatDao : Repository<ChatEntity> {
     @Query("Select * FROM ChatEntity where id = :id")
     override fun getById(id: Long): ChatEntity?
 

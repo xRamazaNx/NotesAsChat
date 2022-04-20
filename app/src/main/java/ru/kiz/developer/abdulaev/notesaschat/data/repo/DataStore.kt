@@ -1,10 +1,10 @@
 package ru.kiz.developer.abdulaev.notesaschat.data.repo
 
-import ru.kiz.developer.abdulaev.notesaschat.data.repo.room.DataDao
+import ru.kiz.developer.abdulaev.notesaschat.core.Repository
 
-abstract class DataStore<E, D : DataDao<E>>(
+abstract class DataStore<E, D : Repository<E>>(
     private val dao: D
-) : DataDao<E> {
+) : Repository<E> {
 
     override fun getById(id: Long): E? {
         return dao.getById(id)
