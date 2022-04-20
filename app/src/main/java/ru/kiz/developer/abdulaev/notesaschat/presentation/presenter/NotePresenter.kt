@@ -13,6 +13,7 @@ interface NotePresenter : Presenter.ActivityPresenter {
     ) : NotePresenter {
 
         init {
+            binding.send.isEnabled = false
             binding.inputEditText.addTextChangedListener {
                 binding.send.isEnabled = it?.toString()?.isNotBlank() == true
             }
