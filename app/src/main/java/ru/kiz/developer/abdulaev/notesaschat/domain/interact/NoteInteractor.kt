@@ -1,7 +1,7 @@
 package ru.kiz.developer.abdulaev.notesaschat.domain.interact
 
 import ru.kiz.developer.abdulaev.notesaschat.core.Repository
-import ru.kiz.developer.abdulaev.notesaschat.data.entity.NoteEntity
+import ru.kiz.developer.abdulaev.notesaschat.data.room.entity.NoteEntity
 import ru.kiz.developer.abdulaev.notesaschat.domain.model.Note
 
 interface NoteInteractor : Interactor {

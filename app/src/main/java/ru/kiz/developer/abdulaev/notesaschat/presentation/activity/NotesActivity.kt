@@ -5,8 +5,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import ru.kiz.developer.abdulaev.notesaschat.data.repo.NoteStore
-import ru.kiz.developer.abdulaev.notesaschat.data.repo.room.Room
+import ru.kiz.developer.abdulaev.notesaschat.data.store.NoteStore
+import ru.kiz.developer.abdulaev.notesaschat.data.room.Room
 import ru.kiz.developer.abdulaev.notesaschat.databinding.ActivityNotesBinding
 import ru.kiz.developer.abdulaev.notesaschat.domain.interact.NoteInteractor
 import ru.kiz.developer.abdulaev.notesaschat.domain.model.Note
@@ -18,7 +18,7 @@ import ru.kiz.developer.abdulaev.notesaschat.presentation.viewmodel.NoteViewMode
 @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
 class NotesActivity : AppCompatActivity(), AbstractHolder.ClickListener<Note> {
     private val chatId: Long by lazy {
-        intent.getLongExtra("chatId", -1L)
+        intent.getLongExtra(ChatActivity.IEK_chatId, -1L)
     }
     private val binding by lazy {
         ActivityNotesBinding.inflate(layoutInflater)
@@ -32,11 +32,12 @@ class NotesActivity : AppCompatActivity(), AbstractHolder.ClickListener<Note> {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
         if (chatId == -1L) {
             finish()
             return
         }
+        setContentView(binding.root)
+        title = intent.getStringExtra(ChatActivity.IEK_chatName)
         val recycler = binding.recycler
         recycler.layoutManager = LinearLayoutManager(this)
         recycler.addItemDecoration(

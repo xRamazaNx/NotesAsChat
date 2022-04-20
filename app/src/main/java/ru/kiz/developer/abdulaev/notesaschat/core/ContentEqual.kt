@@ -1,4 +1,4 @@
-package ru.kiz.developer.abdulaev.notesaschat.domain.model
+package ru.kiz.developer.abdulaev.notesaschat.core
 
 interface ContentEqual {
     fun isEqualId(content: ContentEqual): Boolean

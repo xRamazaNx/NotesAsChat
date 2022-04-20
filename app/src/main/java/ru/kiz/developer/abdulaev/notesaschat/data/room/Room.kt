@@ -1,10 +1,10 @@
-package ru.kiz.developer.abdulaev.notesaschat.data.repo.room
+package ru.kiz.developer.abdulaev.notesaschat.data.room
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import ru.kiz.developer.abdulaev.notesaschat.data.entity.ChatEntity
-import ru.kiz.developer.abdulaev.notesaschat.data.entity.NoteEntity
+import ru.kiz.developer.abdulaev.notesaschat.data.room.entity.ChatEntity
+import ru.kiz.developer.abdulaev.notesaschat.data.room.entity.NoteEntity
 
 @Database(
     entities = [

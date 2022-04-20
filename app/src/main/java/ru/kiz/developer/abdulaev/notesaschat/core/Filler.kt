@@ -7,7 +7,7 @@ interface Filler<F : Filler.ValueFiller> {
 
     interface ValueFiller {
         interface ChatFiller : ValueFiller {
-            fun fill(id: Long)
+            fun fill(id: Long, name: String)
         }
     }
 }

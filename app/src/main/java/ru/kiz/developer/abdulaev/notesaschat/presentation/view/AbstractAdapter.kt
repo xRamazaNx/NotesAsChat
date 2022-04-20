@@ -1,8 +1,8 @@
 package ru.kiz.developer.abdulaev.notesaschat.presentation.view
 
 import androidx.recyclerview.widget.ListAdapter
-import ru.kiz.developer.abdulaev.notesaschat.domain.model.ContentEqual
-import ru.kiz.developer.abdulaev.notesaschat.presentation.utils.DiffUtilCallback
+import ru.kiz.developer.abdulaev.notesaschat.core.ContentEqual
+import ru.kiz.developer.abdulaev.notesaschat.utils.DiffUtilCallback
 
 abstract class AbstractAdapter<T : ContentEqual, VH : AbstractHolder<T>>(
     private val clickListener: AbstractHolder.ClickListener<T>

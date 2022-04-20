@@ -1,4 +1,4 @@
-package ru.kiz.developer.abdulaev.notesaschat.data.repo
+package ru.kiz.developer.abdulaev.notesaschat.data.store
 
 import ru.kiz.developer.abdulaev.notesaschat.core.Repository
 

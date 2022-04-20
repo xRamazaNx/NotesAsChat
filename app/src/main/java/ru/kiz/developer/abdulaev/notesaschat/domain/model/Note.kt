@@ -1,6 +1,7 @@
 package ru.kiz.developer.abdulaev.notesaschat.domain.model
 
-import ru.kiz.developer.abdulaev.notesaschat.data.entity.NoteEntity
+import ru.kiz.developer.abdulaev.notesaschat.core.ContentEqual
+import ru.kiz.developer.abdulaev.notesaschat.data.room.entity.NoteEntity
 import ru.kiz.developer.abdulaev.notesaschat.domain.Binder
 import ru.kiz.developer.abdulaev.notesaschat.domain.Binder.DataBinder
 

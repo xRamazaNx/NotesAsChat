@@ -1,7 +1,8 @@
 package ru.kiz.developer.abdulaev.notesaschat.domain.model
 
+import ru.kiz.developer.abdulaev.notesaschat.core.ContentEqual
 import ru.kiz.developer.abdulaev.notesaschat.core.Filler
-import ru.kiz.developer.abdulaev.notesaschat.data.entity.ChatEntity
+import ru.kiz.developer.abdulaev.notesaschat.data.room.entity.ChatEntity
 import ru.kiz.developer.abdulaev.notesaschat.domain.Binder
 import ru.kiz.developer.abdulaev.notesaschat.domain.Binder.DataBinder
 
@@ -34,6 +35,6 @@ data class Chat(
     }
 
     override fun fill(filler: Filler.ValueFiller.ChatFiller) {
-        return filler.fill(id)
+        return filler.fill(id, name)
     }
 }

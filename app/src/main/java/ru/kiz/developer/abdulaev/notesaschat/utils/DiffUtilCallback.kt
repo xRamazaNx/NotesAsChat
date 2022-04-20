@@ -1,7 +1,7 @@
-package ru.kiz.developer.abdulaev.notesaschat.presentation.utils
+package ru.kiz.developer.abdulaev.notesaschat.utils
 
 import androidx.recyclerview.widget.DiffUtil
-import ru.kiz.developer.abdulaev.notesaschat.domain.model.ContentEqual
+import ru.kiz.developer.abdulaev.notesaschat.core.ContentEqual
 
 class DiffUtilCallback<T : ContentEqual> : DiffUtil.ItemCallback<T>() {
     override fun areItemsTheSame(oldItem: T, newItem: T): Boolean {

@@ -1,8 +1,8 @@
-package ru.kiz.developer.abdulaev.notesaschat.data.repo
+package ru.kiz.developer.abdulaev.notesaschat.data.store
 
 import ru.kiz.developer.abdulaev.notesaschat.core.Repository
-import ru.kiz.developer.abdulaev.notesaschat.data.entity.NoteEntity
-import ru.kiz.developer.abdulaev.notesaschat.data.repo.room.NoteDao
+import ru.kiz.developer.abdulaev.notesaschat.data.room.entity.NoteEntity
+import ru.kiz.developer.abdulaev.notesaschat.data.room.NoteDao
 
 class NoteStore(
     private val dataStore: NoteDao

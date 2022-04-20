@@ -1,4 +1,4 @@
-package ru.kiz.developer.abdulaev.notesaschat.presentation.utils
+package ru.kiz.developer.abdulaev.notesaschat.utils
 
 import android.content.Context
 import android.view.LayoutInflater

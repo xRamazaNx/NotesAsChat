@@ -1,9 +1,9 @@
-package ru.kiz.developer.abdulaev.notesaschat.data.repo.room
+package ru.kiz.developer.abdulaev.notesaschat.data.room
 
 import androidx.room.*
 import androidx.room.OnConflictStrategy.*
 import ru.kiz.developer.abdulaev.notesaschat.core.Repository
-import ru.kiz.developer.abdulaev.notesaschat.data.entity.ChatEntity
+import ru.kiz.developer.abdulaev.notesaschat.data.room.entity.ChatEntity
 
 @Dao
 interface ChatDao : Repository<ChatEntity> {

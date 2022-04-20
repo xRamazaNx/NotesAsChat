@@ -1,4 +1,4 @@
-package ru.kiz.developer.abdulaev.notesaschat.data.repo.room
+package ru.kiz.developer.abdulaev.notesaschat.data.room
 
 import androidx.room.Dao
 import androidx.room.Delete
@@ -6,7 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
 import ru.kiz.developer.abdulaev.notesaschat.core.Repository
-import ru.kiz.developer.abdulaev.notesaschat.data.entity.NoteEntity
+import ru.kiz.developer.abdulaev.notesaschat.data.room.entity.NoteEntity
 
 @Dao
 interface NoteDao : Repository<NoteEntity> {

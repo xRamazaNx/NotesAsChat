@@ -3,7 +3,7 @@ package ru.kiz.developer.abdulaev.notesaschat.presentation.view.chat
 import android.view.ViewGroup
 import ru.kiz.developer.abdulaev.notesaschat.R
 import ru.kiz.developer.abdulaev.notesaschat.domain.model.Chat
-import ru.kiz.developer.abdulaev.notesaschat.presentation.utils.inflate
+import ru.kiz.developer.abdulaev.notesaschat.utils.inflate
 import ru.kiz.developer.abdulaev.notesaschat.presentation.view.AbstractAdapter
 import ru.kiz.developer.abdulaev.notesaschat.presentation.view.AbstractHolder
 
