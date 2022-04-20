@@ -10,22 +10,22 @@ interface NotePresenter : Presenter {
     fun scrollTo(position: Int)
 
     class Base(
-        private val activityNotesBinding: ActivityNotesBinding
+        private val binding: ActivityNotesBinding
     ) : NotePresenter {
         override fun smoothScrollTo(position: Int) {
-            activityNotesBinding.recycler.smoothScrollToPosition(position)
+            binding.recycler.smoothScrollToPosition(position)
         }
 
         override fun noteBody(): String {
-            return activityNotesBinding.inputEditText.text.toString()
+            return binding.inputEditText.text.toString()
         }
 
         override fun clearBody() {
-            activityNotesBinding.inputEditText.setText("")
+            binding.inputEditText.setText("")
         }
 
         override fun scrollTo(position: Int) {
-            activityNotesBinding.recycler.scrollToPosition(position)
+            binding.recycler.scrollToPosition(position)
         }
     }
 }
