@@ -1,6 +1,5 @@
 package ru.kiz.developer.abdulaev.notesaschat.presentation.activity
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +11,7 @@ import ru.kiz.developer.abdulaev.notesaschat.data.repo.room.Room
 import ru.kiz.developer.abdulaev.notesaschat.databinding.ActivityChatBinding
 import ru.kiz.developer.abdulaev.notesaschat.domain.interact.ChatInteract
 import ru.kiz.developer.abdulaev.notesaschat.domain.model.Chat
+import ru.kiz.developer.abdulaev.notesaschat.presentation.intent_filler.OpenChatIntentFiller
 import ru.kiz.developer.abdulaev.notesaschat.presentation.view.AbstractHolder
 import ru.kiz.developer.abdulaev.notesaschat.presentation.view.chat.ChatAdapter
 import ru.kiz.developer.abdulaev.notesaschat.presentation.viewmodel.ChatViewModel
@@ -25,9 +25,12 @@ class ChatActivity : AppCompatActivity(), AbstractHolder.ClickListener<Chat> {
     private val adapter = ChatAdapter(this)
 
     override fun onClick(chat: Chat) {
-        val intent = Intent(this, NotesActivity::class.java)
-        intent.putExtra("chatId", chat.id)
-        startActivity(intent)
+        val intentFiller = OpenChatIntentFiller(
+            this,
+            NotesActivity::class.java
+        )
+        chat.fill(intentFiller)
+        startActivity(intentFiller)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

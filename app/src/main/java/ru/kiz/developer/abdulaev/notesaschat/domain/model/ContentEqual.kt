@@ -1,7 +1,6 @@
 package ru.kiz.developer.abdulaev.notesaschat.domain.model
 
-import ru.kiz.developer.abdulaev.notesaschat.core.ID
-
-interface ContentEqual : ID {
+interface ContentEqual {
+    fun isEqualId(content: ContentEqual): Boolean
     fun isEqualContent(content: ContentEqual): Boolean
 }
