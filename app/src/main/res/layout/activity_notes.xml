@@ -32,7 +32,7 @@
             android:layout_weight="1"
             android:autofillHints=""
             android:background="@color/transparent"
-            android:hint="@string/notification"
+            android:hint="@string/note"
             android:inputType="text|textMultiLine"
             android:maxLines="5"
             android:minHeight="56dp"

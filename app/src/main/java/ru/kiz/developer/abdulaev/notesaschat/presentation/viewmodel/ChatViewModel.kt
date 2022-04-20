@@ -4,32 +4,34 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import ru.kiz.developer.abdulaev.notesaschat.domain.model.Chat
 import ru.kiz.developer.abdulaev.notesaschat.domain.interact.ChatInteract
 import ru.kiz.developer.abdulaev.notesaschat.domain.usecase.adding.AddChatCase
+import ru.kiz.developer.abdulaev.notesaschat.presentation.presenter.ChatPresenter
 
-abstract class ChatViewModel : ViewModel(), ViewModelInterface<Chat> {
-    abstract fun addNewChat(name: String)
+abstract class ChatViewModel : ViewModelInterface<Chat, ChatPresenter>() {
+    abstract fun addNewChat(name: String, dispatcher: CoroutineDispatcher = Dispatchers.IO)
     private class Base(
         private val chatInteract: ChatInteract
     ) : ChatViewModel() {
         override val showAllLiveData = MutableLiveData<List<Chat>>()
-        override fun addNewChat(name: String) {
-            viewModelScope.launch(Dispatchers.IO) {
+        override var presenter: ChatPresenter? = null
+
+        override fun addNewChat(name: String, dispatcher: CoroutineDispatcher) {
+            viewModelScope.launch(dispatcher) {
                 val addChatCase = AddChatCase(name, chatInteract)
                 val chat = addChatCase.execute()
                 val updatedList = updatedDataList(chat)
-                withContext(Dispatchers.Main) {
-                    showAllLiveData.value = updatedList
-                }
+                updateUI(updatedList)
+                scrollToLast(updatedList)
             }
         }
 
-        override fun showAll() {
-            viewModelScope.launch(Dispatchers.IO) {
+        override fun showAll(dispatcher: CoroutineDispatcher) {
+            viewModelScope.launch(dispatcher) {
                 val chats = chatInteract.allChats()
                 showAllLiveData.postValue(chats)
             }
