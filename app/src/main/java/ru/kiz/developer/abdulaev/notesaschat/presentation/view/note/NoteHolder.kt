@@ -8,7 +8,7 @@ import ru.kiz.developer.abdulaev.notesaschat.presentation.view.AbstractHolder
 
 class NoteHolder(
     view: View
-) : AbstractHolder<Note>(view), Binder.DataToViewBinder.NoteViewBinder {
+) : AbstractHolder<Note>(view), Binder.DataBinder.NoteBinder {
     private val binding = NoteViewBinding.bind(view)
 
     override fun bindHolder(t: Note, clickListener: ClickListener<Note>) {
@@ -16,7 +16,7 @@ class NoteHolder(
         t.bind(this)
     }
 
-    override fun bindView(body: String) {
+    override fun bind(id: Long, body: String) {
         binding.note.text = body
     }
 }

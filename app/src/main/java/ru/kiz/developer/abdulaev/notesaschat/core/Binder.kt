@@ -1,15 +1,15 @@
 package ru.kiz.developer.abdulaev.notesaschat.core
 
-interface Binder<B : Binder.DataToViewBinder> {
+interface Binder<B : Binder.DataBinder> {
     fun bind(binder: B)
 
-    interface DataToViewBinder {
-        interface ChatViewBinder : DataToViewBinder {
-            fun bindView(name: String, lastNoteStr: String)
+    interface DataBinder {
+        interface ChatBinder : DataBinder {
+            fun bind(id: Long, name: String, lastNoteStr: String)
         }
 
-        interface NoteViewBinder : DataToViewBinder {
-            fun bindView(body: String)
+        interface NoteBinder : DataBinder {
+            fun bind(id: Long, body: String)
         }
     }
 }
