@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import ru.kiz.developer.abdulaev.notesaschat.app
 import ru.kiz.developer.abdulaev.notesaschat.core.Binder
 import ru.kiz.developer.abdulaev.notesaschat.databinding.ActivityChatBinding
-import ru.kiz.developer.abdulaev.notesaschat.domain.interact.ChatInteractor
 import ru.kiz.developer.abdulaev.notesaschat.domain.model.Chat
 import ru.kiz.developer.abdulaev.notesaschat.presentation.UiUpdater
 import ru.kiz.developer.abdulaev.notesaschat.presentation.view.AbstractHolder
@@ -28,7 +27,9 @@ class ChatActivity : AppCompatActivity(), AbstractHolder.ClickListener<Chat>,
     private val binding by lazy {
         ActivityChatBinding.inflate(layoutInflater)
     }
-    private val viewModel by viewModels<ChatViewModel> { chatViewModelFactory() }
+    private val viewModel by viewModels<ChatViewModel> {
+        app.viewModelFactoryProvider.chatViewModelFactory()
+    }
     private val adapter = ChatAdapter(this)
 
     override fun onClick(chat: Chat) {
@@ -69,13 +70,5 @@ class ChatActivity : AppCompatActivity(), AbstractHolder.ClickListener<Chat>,
 
     override fun scrollTo(position: Int) {
         binding.recycler.scrollToPosition(position)
-    }
-
-    private fun chatViewModelFactory(): ChatViewModel.ChatViewModelFactory {
-        val chatRepo = app().dataSource.chatDB()
-        val noteRepo = app().dataSource.noteDB()
-        return ChatViewModel.ChatViewModelFactory(
-            ChatInteractor.Base(chatRepo, noteRepo)
-        )
     }
 }

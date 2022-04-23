@@ -1,8 +1,6 @@
 package ru.kiz.developer.abdulaev.notesaschat.presentation.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -33,15 +31,6 @@ class ChatViewModel(
         viewModelScope.launch(dispatcher) {
             val chats = chatInteractor.allChats()
             showAllLiveData.postValue(chats)
-        }
-    }
-
-    class ChatViewModelFactory(
-        private val chatInteractor: ChatInteractor
-    ) : ViewModelProvider.Factory {
-        @Suppress("UNCHECKED_CAST")
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return ChatViewModel(chatInteractor) as T
         }
     }
 }

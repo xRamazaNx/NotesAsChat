@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.kiz.developer.abdulaev.notesaschat.app
 import ru.kiz.developer.abdulaev.notesaschat.databinding.ActivityNotesBinding
-import ru.kiz.developer.abdulaev.notesaschat.domain.interact.NoteInteractor
 import ru.kiz.developer.abdulaev.notesaschat.domain.model.Note
 import ru.kiz.developer.abdulaev.notesaschat.presentation.UiUpdater
 import ru.kiz.developer.abdulaev.notesaschat.presentation.view.AbstractHolder
@@ -16,7 +15,8 @@ import ru.kiz.developer.abdulaev.notesaschat.presentation.view.note.NoteAdapter
 import ru.kiz.developer.abdulaev.notesaschat.presentation.viewmodel.NoteViewModel
 
 @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
-class NotesActivity : AppCompatActivity(), AbstractHolder.ClickListener<Note>, UiUpdater.ActivityUpdater {
+class NotesActivity : AppCompatActivity(), AbstractHolder.ClickListener<Note>,
+    UiUpdater.ActivityUpdater {
     private val chatId: Long by lazy {
         intent.getLongExtra(ChatActivity.IEK_chatId, -1L)
     }
@@ -24,9 +24,7 @@ class NotesActivity : AppCompatActivity(), AbstractHolder.ClickListener<Note>, U
         ActivityNotesBinding.inflate(layoutInflater)
     }
     private val viewModel by viewModels<NoteViewModel> {
-        val noteRepo = app().dataSource.noteDB()
-        val chatInteract = NoteInteractor.Base(chatId, noteRepo)
-        NoteViewModel.NoteViewModelFactory(chatInteract)
+        app.viewModelFactoryProvider.noteViewModelFactory(chatId)
     }
     private val adapter = NoteAdapter(this)
 
