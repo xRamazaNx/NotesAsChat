@@ -5,11 +5,8 @@ import ru.kiz.developer.abdulaev.notesaschat.core.Repository
 import ru.kiz.developer.abdulaev.notesaschat.data.room.impl.RoomDataSource
 
 interface LocalDataSource {
-    fun chatDB(): ChatDB
-    fun noteDB(): NoteDB
-
-    interface ChatDB : Repository.ChatRepo<ChatEntity>
-    interface NoteDB : Repository.NoteRepo<NoteEntity>
+    fun chatDataSource(): Repository.ChatRepo<ChatEntity>
+    fun noteDataSource(): Repository.NoteRepo<NoteEntity>
 
     companion object {
         fun baseRoom(context: Context): LocalDataSource {

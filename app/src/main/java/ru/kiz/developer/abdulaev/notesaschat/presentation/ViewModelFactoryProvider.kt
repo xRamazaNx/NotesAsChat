@@ -16,8 +16,8 @@ interface ViewModelFactoryProvider {
     ) : ViewModelFactoryProvider {
         override fun chatViewModelFactory(): ViewModelProvider.Factory {
             val chatInteractor = ChatInteractor.Base(
-                dataSource.chatDB(),
-                dataSource.noteDB()
+                dataSource.chatDataSource(),
+                dataSource.noteDataSource()
             )
             return ChatViewModelFactory(chatInteractor)
         }
@@ -25,7 +25,7 @@ interface ViewModelFactoryProvider {
         override fun noteViewModelFactory(chatId: Long): ViewModelProvider.Factory {
             val noteInteractor = NoteInteractor.Base(
                 chatId,
-                dataSource.noteDB()
+                dataSource.noteDataSource()
             )
             return NoteViewModelFactory(noteInteractor)
         }

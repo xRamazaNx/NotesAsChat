@@ -9,8 +9,8 @@ class RoomDataSource(
     databaseName: String,
     context: Context
 ) : LocalDataSource {
-    private val chatRoomDB: ChatRoomDB
-    private val noteRoomDB: NoteRoomDB
+    private val chatRoomDataSource: ChatRoomDataSource
+    private val noteRoomDataSource: NoteRoomDataSource
 
     init {
         val room = Room.databaseBuilder(
@@ -19,10 +19,10 @@ class RoomDataSource(
             databaseName
         ).build()
 
-        chatRoomDB = ChatRoomDB(room.chatDao())
-        noteRoomDB = NoteRoomDB(room.noteDao())
+        chatRoomDataSource = ChatRoomDataSource(room.chatDao())
+        noteRoomDataSource = NoteRoomDataSource(room.noteDao())
     }
 
-    override fun chatDB(): LocalDataSource.ChatDB = chatRoomDB
-    override fun noteDB(): LocalDataSource.NoteDB = noteRoomDB
+    override fun chatDataSource() = chatRoomDataSource
+    override fun noteDataSource() = noteRoomDataSource
 }

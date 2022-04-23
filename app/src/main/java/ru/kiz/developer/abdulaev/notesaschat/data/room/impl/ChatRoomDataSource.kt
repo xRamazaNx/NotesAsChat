@@ -1,13 +1,13 @@
 package ru.kiz.developer.abdulaev.notesaschat.data.room.impl
 
+import ru.kiz.developer.abdulaev.notesaschat.core.Repository
 import ru.kiz.developer.abdulaev.notesaschat.data.ChatEntity
-import ru.kiz.developer.abdulaev.notesaschat.data.LocalDataSource
 import ru.kiz.developer.abdulaev.notesaschat.data.room.ChatDao
 import ru.kiz.developer.abdulaev.notesaschat.data.room.entity.ChatRoomEntity
 
-class ChatRoomDB(
+class ChatRoomDataSource(
     private val dao: ChatDao
-) : LocalDataSource.ChatDB {
+) : Repository.ChatRepo<ChatEntity> {
 
     override fun add(e: ChatEntity): Long {
         return create(e.name)

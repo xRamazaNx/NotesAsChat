@@ -1,13 +1,13 @@
 package ru.kiz.developer.abdulaev.notesaschat.data.room.impl
 
-import ru.kiz.developer.abdulaev.notesaschat.data.LocalDataSource
+import ru.kiz.developer.abdulaev.notesaschat.core.Repository
 import ru.kiz.developer.abdulaev.notesaschat.data.NoteEntity
 import ru.kiz.developer.abdulaev.notesaschat.data.room.NoteDao
 import ru.kiz.developer.abdulaev.notesaschat.data.room.entity.NoteRoomEntity
 
-class NoteRoomDB(
+class NoteRoomDataSource(
     private val dao: NoteDao
-) : LocalDataSource.NoteDB {
+) : Repository.NoteRepo<NoteEntity> {
 
     override fun lastNoteOfChat(id: Long): NoteEntity? {
         val allOfChat = dao.allOfChat(id)
