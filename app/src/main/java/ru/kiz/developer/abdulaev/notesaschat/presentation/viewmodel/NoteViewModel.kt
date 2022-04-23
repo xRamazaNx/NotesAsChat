@@ -9,12 +9,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import ru.kiz.developer.abdulaev.notesaschat.domain.interact.NoteInteractor
 import ru.kiz.developer.abdulaev.notesaschat.domain.model.Note
-import ru.kiz.developer.abdulaev.notesaschat.domain.usecase.AddUseCase
 import ru.kiz.developer.abdulaev.notesaschat.presentation.UiUpdater
 
 abstract class NoteViewModel : AbstractViewModel<Note, UiUpdater.ActivityUpdater>() {
     abstract fun addNewNote(
-        addNoteCase: AddUseCase<Note, NoteInteractor>,
+        body: String,
         dispatcher: CoroutineDispatcher = Dispatchers.IO
     )
 
@@ -25,11 +24,11 @@ abstract class NoteViewModel : AbstractViewModel<Note, UiUpdater.ActivityUpdater
         override var uiAction: UiUpdater.ActivityUpdater? = null
 
         override fun addNewNote(
-            addNoteCase: AddUseCase<Note, NoteInteractor>,
+            body: String,
             dispatcher: CoroutineDispatcher
         ) {
             viewModelScope.launch(dispatcher) {
-                val note = addNoteCase.execute(noteInteractor)
+                val note = noteInteractor.addNote(body)
                 val updatedList = updatedDataList(note)
                 updateUI(updatedList)
                 scrollToLast(updatedList)

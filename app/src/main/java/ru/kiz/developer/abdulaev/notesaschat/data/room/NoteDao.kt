@@ -6,22 +6,22 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
 import ru.kiz.developer.abdulaev.notesaschat.core.Repository
-import ru.kiz.developer.abdulaev.notesaschat.data.room.entity.NoteEntity
+import ru.kiz.developer.abdulaev.notesaschat.data.room.entity.NoteRoomEntity
 
 @Dao
-interface NoteDao : Repository<NoteEntity> {
-    @Query("Select * FROM NoteEntity where id = :id")
-    override fun getById(id: Long): NoteEntity
+interface NoteDao : Repository<NoteRoomEntity> {
+    @Query("Select * FROM NoteRoomEntity where id = :id")
+    override fun getById(id: Long): NoteRoomEntity?
 
-    @Query("select * from NoteEntity")
-    override fun getAll(): List<NoteEntity>
+    @Query("select * from NoteRoomEntity")
+    override fun getAll(): List<NoteRoomEntity>
 
     @Insert(onConflict = REPLACE)
-    override fun add(e: NoteEntity): Long
+    override fun add(e: NoteRoomEntity): Long
 
     @Delete
-    override fun remove(e: NoteEntity)
+    override fun remove(e: NoteRoomEntity)
 
-    @Query("Select * FROM NoteEntity where chatId = :id")
-    fun allOfChat(id: Long): List<NoteEntity>
+    @Query("Select * FROM NoteRoomEntity where chatId = :id")
+    fun allOfChat(id: Long): List<NoteRoomEntity>
 }

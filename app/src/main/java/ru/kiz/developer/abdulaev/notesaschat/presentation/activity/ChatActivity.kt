@@ -6,14 +6,11 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import ru.kiz.developer.abdulaev.notesaschat.app
 import ru.kiz.developer.abdulaev.notesaschat.core.Binder
-import ru.kiz.developer.abdulaev.notesaschat.data.room.Room
-import ru.kiz.developer.abdulaev.notesaschat.data.store.ChatStore
-import ru.kiz.developer.abdulaev.notesaschat.data.store.NoteStore
 import ru.kiz.developer.abdulaev.notesaschat.databinding.ActivityChatBinding
 import ru.kiz.developer.abdulaev.notesaschat.domain.interact.ChatInteractor
 import ru.kiz.developer.abdulaev.notesaschat.domain.model.Chat
-import ru.kiz.developer.abdulaev.notesaschat.domain.usecase.AddUseCase
 import ru.kiz.developer.abdulaev.notesaschat.presentation.UiUpdater
 import ru.kiz.developer.abdulaev.notesaschat.presentation.view.AbstractHolder
 import ru.kiz.developer.abdulaev.notesaschat.presentation.view.chat.ChatAdapter
@@ -56,7 +53,7 @@ class ChatActivity : AppCompatActivity(), AbstractHolder.ClickListener<Chat>,
         recycler.adapter = adapter
 
         binding.addChatBtn.setOnClickListener {
-            viewModel.addNewChat(AddUseCase.AddChat("New chat of notes"))
+            viewModel.addNewChat("New chat of notes")
         }
 
         viewModel.setUiAction(this)
@@ -75,10 +72,10 @@ class ChatActivity : AppCompatActivity(), AbstractHolder.ClickListener<Chat>,
     }
 
     private fun chatViewModelFactory(): ChatViewModel.ChatViewModelFactory {
-        val room = Room.get(this)
-        val noteStore = NoteStore(room.noteDao())
-        val chatStore = ChatStore(room.chatDao())
-        val chatInteractor = ChatInteractor.Base(chatStore, noteStore)
-        return ChatViewModel.ChatViewModelFactory(chatInteractor)
+        val chatRepo = app().dataSource.chatDB()
+        val noteRepo = app().dataSource.noteDB()
+        return ChatViewModel.ChatViewModelFactory(
+            ChatInteractor.Base(chatRepo, noteRepo)
+        )
     }
 }

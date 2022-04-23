@@ -2,11 +2,12 @@ package ru.kiz.developer.abdulaev.notesaschat.data.room.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import ru.kiz.developer.abdulaev.notesaschat.data.ChatEntity
 
 @Entity
-data class ChatEntity(
-    val name: String
-) {
+data class ChatRoomEntity(
+    override val name: String
+) : ChatEntity() {
     @PrimaryKey(autoGenerate = true)
-    var id: Long = 0
+    override var id: Long = 0
 }

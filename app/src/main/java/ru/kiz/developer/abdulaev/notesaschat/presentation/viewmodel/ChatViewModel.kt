@@ -9,12 +9,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import ru.kiz.developer.abdulaev.notesaschat.domain.interact.ChatInteractor
 import ru.kiz.developer.abdulaev.notesaschat.domain.model.Chat
-import ru.kiz.developer.abdulaev.notesaschat.domain.usecase.AddUseCase
 import ru.kiz.developer.abdulaev.notesaschat.presentation.UiUpdater
 
 abstract class ChatViewModel : AbstractViewModel<Chat, UiUpdater.ActivityUpdater>() {
     abstract fun addNewChat(
-        addChatCase: AddUseCase<Chat, ChatInteractor>,
+        name: String,
         dispatcher: CoroutineDispatcher = Dispatchers.IO
     )
 
@@ -25,11 +24,11 @@ abstract class ChatViewModel : AbstractViewModel<Chat, UiUpdater.ActivityUpdater
         override var uiAction: UiUpdater.ActivityUpdater? = null
 
         override fun addNewChat(
-            addChatCase: AddUseCase<Chat, ChatInteractor>,
+            name: String,
             dispatcher: CoroutineDispatcher
         ) {
             viewModelScope.launch(dispatcher) {
-                val chat = addChatCase.execute(chatInteractor)
+                val chat = chatInteractor.addChat(name)
                 val updatedList = updatedDataList(chat)
                 updateUI(updatedList)
                 scrollToLast(updatedList)

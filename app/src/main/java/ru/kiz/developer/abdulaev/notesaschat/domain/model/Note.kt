@@ -1,9 +1,9 @@
 package ru.kiz.developer.abdulaev.notesaschat.domain.model
 
-import ru.kiz.developer.abdulaev.notesaschat.core.ContentEqual
-import ru.kiz.developer.abdulaev.notesaschat.data.room.entity.NoteEntity
 import ru.kiz.developer.abdulaev.notesaschat.core.Binder
 import ru.kiz.developer.abdulaev.notesaschat.core.Binder.DataBinder
+import ru.kiz.developer.abdulaev.notesaschat.core.ContentEqual
+import ru.kiz.developer.abdulaev.notesaschat.data.NoteEntity
 
 data class Note(
     private val id: Long,
