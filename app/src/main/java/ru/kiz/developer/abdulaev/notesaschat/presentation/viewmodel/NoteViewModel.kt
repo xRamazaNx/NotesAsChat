@@ -11,34 +11,27 @@ import ru.kiz.developer.abdulaev.notesaschat.domain.interact.NoteInteractor
 import ru.kiz.developer.abdulaev.notesaschat.domain.model.Note
 import ru.kiz.developer.abdulaev.notesaschat.presentation.UiUpdater
 
-abstract class NoteViewModel : AbstractViewModel<Note, UiUpdater.ActivityUpdater>() {
-    abstract fun addNewNote(
+class NoteViewModel(
+    private val noteInteractor: NoteInteractor
+) : AbstractViewModel<Note, UiUpdater.ActivityUpdater>() {
+    override val showAllLiveData = MutableLiveData<List<Note>>()
+    override var uiAction: UiUpdater.ActivityUpdater? = null
+
+    fun addNewNote(
         body: String,
         dispatcher: CoroutineDispatcher = Dispatchers.IO
-    )
-
-    private class Base(
-        private val noteInteractor: NoteInteractor
-    ) : NoteViewModel() {
-        override val showAllLiveData = MutableLiveData<List<Note>>()
-        override var uiAction: UiUpdater.ActivityUpdater? = null
-
-        override fun addNewNote(
-            body: String,
-            dispatcher: CoroutineDispatcher
-        ) {
-            viewModelScope.launch(dispatcher) {
-                val note = noteInteractor.addNote(body)
-                val updatedList = updatedDataList(note)
-                updateUI(updatedList)
-                scrollToLast(updatedList)
-            }
+    ) {
+        viewModelScope.launch(dispatcher) {
+            val note = noteInteractor.addNote(body)
+            val updatedList = updatedDataList(note)
+            updateUI(updatedList)
+            scrollToLast(updatedList)
         }
+    }
 
-        override fun showAll(dispatcher: CoroutineDispatcher) {
-            viewModelScope.launch(dispatcher) {
-                updateUI(noteInteractor.allNotes())
-            }
+    override fun showAll(dispatcher: CoroutineDispatcher) {
+        viewModelScope.launch(dispatcher) {
+            updateUI(noteInteractor.allNotes())
         }
     }
 
@@ -47,7 +40,7 @@ abstract class NoteViewModel : AbstractViewModel<Note, UiUpdater.ActivityUpdater
     ) : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return Base(noteInteract) as T
+            return NoteViewModel(noteInteract) as T
         }
     }
 }

@@ -11,35 +11,28 @@ import ru.kiz.developer.abdulaev.notesaschat.domain.interact.ChatInteractor
 import ru.kiz.developer.abdulaev.notesaschat.domain.model.Chat
 import ru.kiz.developer.abdulaev.notesaschat.presentation.UiUpdater
 
-abstract class ChatViewModel : AbstractViewModel<Chat, UiUpdater.ActivityUpdater>() {
-    abstract fun addNewChat(
+class ChatViewModel(
+    private val chatInteractor: ChatInteractor
+) : AbstractViewModel<Chat, UiUpdater.ActivityUpdater>() {
+    override val showAllLiveData = MutableLiveData<List<Chat>>()
+    override var uiAction: UiUpdater.ActivityUpdater? = null
+
+    fun addNewChat(
         name: String,
         dispatcher: CoroutineDispatcher = Dispatchers.IO
-    )
-
-    private class Base(
-        private val chatInteractor: ChatInteractor
-    ) : ChatViewModel() {
-        override val showAllLiveData = MutableLiveData<List<Chat>>()
-        override var uiAction: UiUpdater.ActivityUpdater? = null
-
-        override fun addNewChat(
-            name: String,
-            dispatcher: CoroutineDispatcher
-        ) {
-            viewModelScope.launch(dispatcher) {
-                val chat = chatInteractor.addChat(name)
-                val updatedList = updatedDataList(chat)
-                updateUI(updatedList)
-                scrollToLast(updatedList)
-            }
+    ) {
+        viewModelScope.launch(dispatcher) {
+            val chat = chatInteractor.addChat(name)
+            val updatedList = updatedDataList(chat)
+            updateUI(updatedList)
+            scrollToLast(updatedList)
         }
+    }
 
-        override fun showAll(dispatcher: CoroutineDispatcher) {
-            viewModelScope.launch(dispatcher) {
-                val chats = chatInteractor.allChats()
-                showAllLiveData.postValue(chats)
-            }
+    override fun showAll(dispatcher: CoroutineDispatcher) {
+        viewModelScope.launch(dispatcher) {
+            val chats = chatInteractor.allChats()
+            showAllLiveData.postValue(chats)
         }
     }
 
@@ -48,7 +41,7 @@ abstract class ChatViewModel : AbstractViewModel<Chat, UiUpdater.ActivityUpdater
     ) : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return Base(chatInteractor) as T
+            return ChatViewModel(chatInteractor) as T
         }
     }
 }
