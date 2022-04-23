@@ -14,14 +14,14 @@ import ru.kiz.developer.abdulaev.notesaschat.databinding.ActivityChatBinding
 import ru.kiz.developer.abdulaev.notesaschat.domain.interact.ChatInteractor
 import ru.kiz.developer.abdulaev.notesaschat.domain.model.Chat
 import ru.kiz.developer.abdulaev.notesaschat.domain.usecase.AddUseCase
-import ru.kiz.developer.abdulaev.notesaschat.presentation.presenter.ChatPresenter
+import ru.kiz.developer.abdulaev.notesaschat.presentation.UiUpdater
 import ru.kiz.developer.abdulaev.notesaschat.presentation.view.AbstractHolder
 import ru.kiz.developer.abdulaev.notesaschat.presentation.view.chat.ChatAdapter
 import ru.kiz.developer.abdulaev.notesaschat.presentation.viewmodel.ChatViewModel
 
 
 @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
-class ChatActivity : AppCompatActivity(), AbstractHolder.ClickListener<Chat> {
+class ChatActivity : AppCompatActivity(), AbstractHolder.ClickListener<Chat>, UiUpdater.ActivityUpdater {
     companion object {
         const val IEK_chatId = "chat_id" // Intent Extra Key
         const val IEK_chatName = "chat_name" // Intent Extra Key
@@ -58,11 +58,19 @@ class ChatActivity : AppCompatActivity(), AbstractHolder.ClickListener<Chat> {
             viewModel.addNewChat(AddUseCase.AddChat("New chat of notes"))
         }
 
-        viewModel.setPresenter(ChatPresenter.Base(binding))
+        viewModel.setUiAction(this)
         viewModel.showAllLiveData.observe(this) { chats ->
             adapter.setList(chats)
         }
         viewModel.showAll()
+    }
+
+    override fun smoothScrollTo(position: Int) {
+        binding.recycler.smoothScrollToPosition(position)
+    }
+
+    override fun scrollTo(position: Int) {
+        binding.recycler.scrollToPosition(position)
     }
 
     private fun chatViewModelFactory(): ChatViewModel.ChatViewModelFactory {

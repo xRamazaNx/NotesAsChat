@@ -10,9 +10,9 @@ import kotlinx.coroutines.launch
 import ru.kiz.developer.abdulaev.notesaschat.domain.interact.NoteInteractor
 import ru.kiz.developer.abdulaev.notesaschat.domain.model.Note
 import ru.kiz.developer.abdulaev.notesaschat.domain.usecase.AddUseCase
-import ru.kiz.developer.abdulaev.notesaschat.presentation.presenter.NotePresenter
+import ru.kiz.developer.abdulaev.notesaschat.presentation.UiUpdater
 
-abstract class NoteViewModel : ViewModelInterface<Note, NotePresenter>() {
+abstract class NoteViewModel : AbstractViewModel<Note, UiUpdater.ActivityUpdater>() {
     abstract fun addNewNote(
         addNoteCase: AddUseCase<Note, NoteInteractor>,
         dispatcher: CoroutineDispatcher = Dispatchers.IO
@@ -22,7 +22,7 @@ abstract class NoteViewModel : ViewModelInterface<Note, NotePresenter>() {
         private val noteInteractor: NoteInteractor
     ) : NoteViewModel() {
         override val showAllLiveData = MutableLiveData<List<Note>>()
-        override var presenter: NotePresenter? = null
+        override var uiAction: UiUpdater.ActivityUpdater? = null
 
         override fun addNewNote(
             addNoteCase: AddUseCase<Note, NoteInteractor>,

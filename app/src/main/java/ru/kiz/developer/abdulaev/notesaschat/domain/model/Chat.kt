@@ -3,14 +3,14 @@ package ru.kiz.developer.abdulaev.notesaschat.domain.model
 import ru.kiz.developer.abdulaev.notesaschat.core.ContentEqual
 import ru.kiz.developer.abdulaev.notesaschat.core.Filler
 import ru.kiz.developer.abdulaev.notesaschat.data.room.entity.ChatEntity
-import ru.kiz.developer.abdulaev.notesaschat.domain.Binder
-import ru.kiz.developer.abdulaev.notesaschat.domain.Binder.DataBinder
+import ru.kiz.developer.abdulaev.notesaschat.core.Binder
+import ru.kiz.developer.abdulaev.notesaschat.core.Binder.DataToViewBinder
 
 data class Chat(
     private val id: Long,
     private val name: String,
     private val lastNote: String = ""
-) : Binder<DataBinder.ChatBinder>, ContentEqual, Filler<Filler.ValueFiller.ChatFiller> {
+) : Binder<DataToViewBinder.ChatViewBinder>, ContentEqual, Filler<Filler.ValueFiller.ChatFiller> {
     constructor(
         chatEntity: ChatEntity,
         lastNote: String = ""
@@ -20,8 +20,8 @@ data class Chat(
         lastNote
     )
 
-    override fun bind(binder: DataBinder.ChatBinder) {
-        binder.bind(name, lastNote)
+    override fun bind(binder: DataToViewBinder.ChatViewBinder) {
+        binder.bindView(name, lastNote)
     }
 
     override fun isEqualId(content: ContentEqual): Boolean {

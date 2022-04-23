@@ -15,7 +15,7 @@ abstract class AbstractHolder<T>(view: View) : ViewHolder(view) {
     }
 
     @CallSuper
-    open fun bind(t: T, clickListener: ClickListener<T>) {
+    open fun bindHolder(t: T, clickListener: ClickListener<T>) {
         itemView.setOnClickListener {
             clickListener.onClick(t)
         }

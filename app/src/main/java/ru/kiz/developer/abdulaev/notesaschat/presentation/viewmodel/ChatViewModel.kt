@@ -10,9 +10,9 @@ import kotlinx.coroutines.launch
 import ru.kiz.developer.abdulaev.notesaschat.domain.interact.ChatInteractor
 import ru.kiz.developer.abdulaev.notesaschat.domain.model.Chat
 import ru.kiz.developer.abdulaev.notesaschat.domain.usecase.AddUseCase
-import ru.kiz.developer.abdulaev.notesaschat.presentation.presenter.ChatPresenter
+import ru.kiz.developer.abdulaev.notesaschat.presentation.UiUpdater
 
-abstract class ChatViewModel : ViewModelInterface<Chat, ChatPresenter>() {
+abstract class ChatViewModel : AbstractViewModel<Chat, UiUpdater.ActivityUpdater>() {
     abstract fun addNewChat(
         addChatCase: AddUseCase<Chat, ChatInteractor>,
         dispatcher: CoroutineDispatcher = Dispatchers.IO
@@ -22,7 +22,7 @@ abstract class ChatViewModel : ViewModelInterface<Chat, ChatPresenter>() {
         private val chatInteractor: ChatInteractor
     ) : ChatViewModel() {
         override val showAllLiveData = MutableLiveData<List<Chat>>()
-        override var presenter: ChatPresenter? = null
+        override var uiAction: UiUpdater.ActivityUpdater? = null
 
         override fun addNewChat(
             addChatCase: AddUseCase<Chat, ChatInteractor>,

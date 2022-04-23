@@ -12,6 +12,6 @@ abstract class AbstractAdapter<T : ContentEqual, VH : AbstractHolder<T>>(
 
     override fun onBindViewHolder(holder: VH, position: Int) {
         val note = getItem(position)
-        holder.bind(note, clickListener)
+        holder.bindHolder(note, clickListener)
     }
 }

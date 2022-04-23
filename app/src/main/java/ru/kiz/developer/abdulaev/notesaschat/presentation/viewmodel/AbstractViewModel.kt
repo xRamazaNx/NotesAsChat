@@ -5,11 +5,11 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import ru.kiz.developer.abdulaev.notesaschat.presentation.Presenter
+import ru.kiz.developer.abdulaev.notesaschat.presentation.UiUpdater
 
-abstract class ViewModelInterface<T, P : Presenter.ActivityPresenter> : ViewModel() {
+abstract class AbstractViewModel<T, U : UiUpdater.ActivityUpdater> : ViewModel() {
     abstract val showAllLiveData: MutableLiveData<List<T>>
-    protected abstract var presenter: P?
+    protected abstract var uiAction: U?
     abstract fun showAll(dispatcher: CoroutineDispatcher = Dispatchers.IO)
     fun updatedDataList(item: T): List<T> {
         val newList = mutableListOf<T>()
@@ -21,12 +21,12 @@ abstract class ViewModelInterface<T, P : Presenter.ActivityPresenter> : ViewMode
     }
 
     @JvmName("setPresenterF")
-    fun setPresenter(notePresenter: P) {
-        this.presenter = notePresenter
+    fun setUiAction(UiAction: U) {
+        this.uiAction = UiAction
     }
 
     override fun onCleared() {
-        presenter = null
+        uiAction = null
         super.onCleared()
     }
 
@@ -34,8 +34,8 @@ abstract class ViewModelInterface<T, P : Presenter.ActivityPresenter> : ViewMode
         showAllLiveData.value = updatedList
     }
 
-    fun scrollToLast(list: List<T>) {
+    protected fun scrollToLast(list: List<T>) {
         if (list.isNotEmpty())
-            presenter?.smoothScrollTo(list.lastIndex)
+            uiAction?.smoothScrollTo(list.lastIndex)
     }
 }
