@@ -44,7 +44,7 @@ class ChatActivity : CommonActivity(), AbstractHolder.ClickListener<Chat> {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        initViewsOfActivity()
+        initViews()
 
         viewModel.setUiAction(this)
         viewModel.showAllLiveData.observe(this) { chats ->
@@ -53,7 +53,7 @@ class ChatActivity : CommonActivity(), AbstractHolder.ClickListener<Chat> {
         viewModel.showAll()
     }
 
-    override fun initViewsOfActivity() {
+    override fun initViews() {
         recycler = binding.recycler
         recycler.layoutManager = LinearLayoutManager(this)
         recycler.addItemDecoration(

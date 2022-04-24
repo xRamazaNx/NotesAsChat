@@ -34,7 +34,7 @@ class NotesActivity : CommonActivity(), AbstractHolder.ClickListener<Note> {
         setContentView(binding.root)
         title = intent.getStringExtra(ChatActivity.IEK_chatName)
 
-        initViewsOfActivity()
+        initViews()
 
         viewModel.setUiAction(this)
         viewModel.showAllLiveData.observe(this) { notes ->
@@ -43,7 +43,7 @@ class NotesActivity : CommonActivity(), AbstractHolder.ClickListener<Note> {
         viewModel.showAll()
     }
 
-    override fun initViewsOfActivity() {
+    override fun initViews() {
         recycler = binding.recycler
         recycler.layoutManager = LinearLayoutManager(this)
         recycler.addItemDecoration(

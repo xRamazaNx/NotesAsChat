@@ -7,7 +7,7 @@ import ru.kiz.developer.abdulaev.notesaschat.presentation.UiUpdater
 abstract class CommonActivity : AppCompatActivity(), UiUpdater.ActivityUpdater {
     protected lateinit var recycler: RecyclerView
 
-    protected abstract fun initViewsOfActivity()
+    protected abstract fun initViews()
 
     override fun smoothScrollTo(position: Int) {
         recycler.smoothScrollToPosition(position)
