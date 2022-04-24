@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 
-fun inflater(context: Context): LayoutInflater = LayoutInflater.from(context)
+private fun inflater(context: Context): LayoutInflater = LayoutInflater.from(context)
 
 fun Context.inflate(
     @LayoutRes layout: Int,
