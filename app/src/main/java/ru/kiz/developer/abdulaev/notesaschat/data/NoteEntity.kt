@@ -1,7 +1,8 @@
 package ru.kiz.developer.abdulaev.notesaschat.data
 
-abstract class NoteEntity {
-    abstract var id: Long
-    abstract val chatId: Long
-    abstract val body: String
+import ru.kiz.developer.abdulaev.notesaschat.core.ID
+
+interface NoteEntity : ID {
+    val chatId: Long
+    val body: String
 }

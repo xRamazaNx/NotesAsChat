@@ -6,8 +6,9 @@ import ru.kiz.developer.abdulaev.notesaschat.data.ChatEntity
 
 @Entity
 data class ChatRoomEntity(
-    override val name: String
-) : ChatEntity() {
+    override val name: String,
     @PrimaryKey(autoGenerate = true)
     override var id: Long = 0
+) : ChatEntity() {
+    constructor(e: ChatEntity) : this(e.name, e.id)
 }
