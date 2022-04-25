@@ -9,11 +9,13 @@ interface LocalDataSource {
     fun noteDataSource(): Repository.NoteRepo<NoteEntity>
 
     companion object {
-        fun baseRoom(context: Context): LocalDataSource {
+        /** if need the another db to use that implement localDataSources and return here*/
+        fun base(context: Context): LocalDataSource {
             return RoomDataSource("database.db", context)
         }
 
-        fun testRoom(context: Context): LocalDataSource {
+        /** if need to test the db return the localDataSource implementation here*/
+        fun test(context: Context): LocalDataSource {
             return RoomDataSource("test_database.db", context)
         }
     }

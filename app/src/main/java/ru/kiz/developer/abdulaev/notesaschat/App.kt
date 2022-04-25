@@ -12,7 +12,7 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         app = this
-        dataSource = LocalDataSource.baseRoom(this)
+        dataSource = LocalDataSource.base(this)
         viewModelFactoryProvider = ViewModelFactoryProvider.Base(dataSource)
     }
 }
