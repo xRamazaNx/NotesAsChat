@@ -10,7 +10,8 @@ import ru.kiz.developer.abdulaev.notesaschat.data.room.entity.NoteRoomEntity
         ChatRoomEntity::class,
         NoteRoomEntity::class
     ],
-    version = 1
+    version = 1,
+    exportSchema = false
 )
 abstract class AbstractRoom : RoomDatabase() {
     abstract fun chatDao(): ChatDao
