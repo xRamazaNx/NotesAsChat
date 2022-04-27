@@ -11,5 +11,6 @@
     <color name="input_background_night">#2B2B2B</color>
     <color name="transparent">#00E3E3E3</color>
     <color name="accent">#D87D06</color>
-    <color name="note_decoration_bord">#784646</color>
+    <color name="note_decoration">#838383</color>
+    <color name="note_decoration_night">#000000</color>
 </resources>
