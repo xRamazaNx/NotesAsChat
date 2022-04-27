@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.divider.MaterialDividerItemDecoration
 import ru.kiz.developer.abdulaev.notesaschat.app
 import ru.kiz.developer.abdulaev.notesaschat.core.Binder
 import ru.kiz.developer.abdulaev.notesaschat.core.Binder.DataBinder
@@ -12,6 +13,7 @@ import ru.kiz.developer.abdulaev.notesaschat.presentation.activity_launcher.Note
 import ru.kiz.developer.abdulaev.notesaschat.presentation.view.AbstractHolder
 import ru.kiz.developer.abdulaev.notesaschat.presentation.view.chat.ChatAdapter
 import ru.kiz.developer.abdulaev.notesaschat.presentation.viewmodel.ChatViewModel
+import splitties.dimensions.dp
 
 
 @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
@@ -54,7 +56,13 @@ class ChatActivity : CommonActivity(), AbstractHolder.ClickListener<Binder<DataB
         recycler = binding.recycler
         recycler.layoutManager = LinearLayoutManager(this)
         recycler.addItemDecoration(
-            DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
+            MaterialDividerItemDecoration(
+                this,
+                DividerItemDecoration.VERTICAL
+            ).apply {
+                dividerInsetStart = dp(16)
+                dividerThickness = 1
+            }
         )
         recycler.adapter = adapter
 
