@@ -13,7 +13,6 @@ import ru.kiz.developer.abdulaev.notesaschat.presentation.activity_launcher.Note
 import ru.kiz.developer.abdulaev.notesaschat.presentation.view.AbstractHolder
 import ru.kiz.developer.abdulaev.notesaschat.presentation.view.chat.ChatAdapter
 import ru.kiz.developer.abdulaev.notesaschat.presentation.viewmodel.ChatViewModel
-import splitties.dimensions.dp
 
 
 @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
@@ -59,10 +58,7 @@ class ChatActivity : CommonActivity(), AbstractHolder.ClickListener<Binder<DataB
             MaterialDividerItemDecoration(
                 this,
                 DividerItemDecoration.VERTICAL
-            ).apply {
-                dividerInsetStart = dp(16)
-                dividerThickness = 1
-            }
+            ).apply { dividerThickness = 1 }
         )
         recycler.adapter = adapter
 
