@@ -1,21 +1,21 @@
 package ru.kiz.developer.abdulaev.notesaschat.presentation.activity
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.kiz.developer.abdulaev.notesaschat.app
 import ru.kiz.developer.abdulaev.notesaschat.core.Binder
+import ru.kiz.developer.abdulaev.notesaschat.core.Binder.DataBinder
 import ru.kiz.developer.abdulaev.notesaschat.databinding.ActivityChatBinding
-import ru.kiz.developer.abdulaev.notesaschat.domain.model.Chat
+import ru.kiz.developer.abdulaev.notesaschat.presentation.activity_launcher.NoteActivityLauncher
 import ru.kiz.developer.abdulaev.notesaschat.presentation.view.AbstractHolder
 import ru.kiz.developer.abdulaev.notesaschat.presentation.view.chat.ChatAdapter
 import ru.kiz.developer.abdulaev.notesaschat.presentation.viewmodel.ChatViewModel
 
 
 @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
-class ChatActivity : CommonActivity(), AbstractHolder.ClickListener<Chat> {
+class ChatActivity : CommonActivity(), AbstractHolder.ClickListener<Binder<DataBinder.ChatBinder>> {
     companion object {
         const val IEK_chatId = "chat_id" // Intent Extra Key
         const val IEK_chatName = "chat_name" // Intent Extra Key
@@ -29,15 +29,12 @@ class ChatActivity : CommonActivity(), AbstractHolder.ClickListener<Chat> {
     }
     private val adapter = ChatAdapter(this)
 
-    override fun onClick(chat: Chat) {
-        val intent = Intent(this, NotesActivity::class.java)
-        chat.bind(object : Binder.DataBinder.ChatBinder {
-            override fun bind(id: Long, name: String, lastNoteStr: String) {
-                intent.putExtra(IEK_chatId, id)
-                intent.putExtra(IEK_chatName, name)
-            }
-        })
-        startActivity(intent)
+    private val noteActivityResultLauncher = NoteActivityLauncher(this) { result ->
+        viewModel.reload(result)
+    }
+
+    override fun onClick(binder: Binder<DataBinder.ChatBinder>) {
+        noteActivityResultLauncher.launch(binder)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

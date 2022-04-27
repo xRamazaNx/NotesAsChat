@@ -38,4 +38,8 @@ abstract class AbstractViewModel<T, U : UiUpdater.ActivityUpdater> : ViewModel()
         if (list.isNotEmpty())
             uiAction?.smoothScrollTo(list.lastIndex)
     }
+
+    fun reload(isNeed: Boolean) {
+        if (isNeed) showAll()
+    }
 }

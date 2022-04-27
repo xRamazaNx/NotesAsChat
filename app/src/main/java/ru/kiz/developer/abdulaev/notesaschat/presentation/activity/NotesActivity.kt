@@ -51,6 +51,7 @@ class NotesActivity : CommonActivity(), AbstractHolder.ClickListener<Note> {
             val body = binding.inputEditText.text.toString()
             viewModel.addNewNote(body)
             binding.inputEditText.setText("")
+            setPositiveResult()
         }
 
         recycler = binding.recycler
@@ -60,5 +61,10 @@ class NotesActivity : CommonActivity(), AbstractHolder.ClickListener<Note> {
 
     override fun onClick(note: Note) {
         // TODO: Handle it later
+    }
+
+    // call this fun whenever change the chat (removed or added or changed)
+    private fun setPositiveResult() {
+        setResult(RESULT_OK)
     }
 }
