@@ -3,7 +3,6 @@ package ru.kiz.developer.abdulaev.notesaschat.presentation.activity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.widget.addTextChangedListener
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.kiz.developer.abdulaev.notesaschat.app
 import ru.kiz.developer.abdulaev.notesaschat.databinding.ActivityNotesBinding
@@ -44,23 +43,19 @@ class NotesActivity : CommonActivity(), AbstractHolder.ClickListener<Note> {
     }
 
     override fun initViews() {
-        recycler = binding.recycler
-        recycler.layoutManager = LinearLayoutManager(this)
-        recycler.addItemDecoration(
-            DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
-        )
-        recycler.adapter = adapter
         binding.send.isEnabled = false
-
         binding.inputEditText.addTextChangedListener {
             binding.send.isEnabled = it?.toString()?.isNotBlank() == true
         }
-
         binding.send.setOnClickListener {
             val body = binding.inputEditText.text.toString()
             viewModel.addNewNote(body)
             binding.inputEditText.setText("")
         }
+
+        recycler = binding.recycler
+        recycler.layoutManager = LinearLayoutManager(this)
+        recycler.adapter = adapter
     }
 
     override fun onClick(note: Note) {
