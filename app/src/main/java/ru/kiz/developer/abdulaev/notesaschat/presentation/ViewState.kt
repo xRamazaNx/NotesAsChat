@@ -1,5 +1,5 @@
 package ru.kiz.developer.abdulaev.notesaschat.presentation
 
-interface ViewState {
-    fun switchSelectionState(): Boolean
+interface ViewState<R> {
+    fun switchState(): R
 }

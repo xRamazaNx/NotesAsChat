@@ -7,7 +7,7 @@ class ChatUi(
     private val id: Long,
     private val name: String,
     private val lastNote: String
-) : AbstractUiData(), Binder<Binder.DataBinder.ChatBinder> {
+) : SelectionState(), Binder<Binder.DataBinder.ChatBinder> {
 
     override fun bind(binder: Binder.DataBinder.ChatBinder) {
         binder.bind(id, name, lastNote)

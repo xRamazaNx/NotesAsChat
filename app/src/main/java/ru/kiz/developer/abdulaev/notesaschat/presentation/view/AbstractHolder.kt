@@ -5,9 +5,9 @@ import android.widget.LinearLayout
 import androidx.annotation.CallSuper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import ru.kiz.developer.abdulaev.notesaschat.presentation.AbstractUiData
+import ru.kiz.developer.abdulaev.notesaschat.presentation.SelectionState
 
-abstract class AbstractHolder<T : AbstractUiData, V : ViewWrapper>(
+abstract class AbstractHolder<T : SelectionState, V : ViewWrapper>(
     view: View
 ) : ViewHolder(view) {
     protected abstract val viewWrapper: V

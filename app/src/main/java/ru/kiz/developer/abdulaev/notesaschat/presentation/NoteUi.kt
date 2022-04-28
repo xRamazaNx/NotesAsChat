@@ -6,7 +6,7 @@ import ru.kiz.developer.abdulaev.notesaschat.core.ContentEqual
 data class NoteUi(
     private val id: Long,
     private val body: String
-) : AbstractUiData(), Binder<Binder.DataBinder.NoteBinder> {
+) : SelectionState(), Binder<Binder.DataBinder.NoteBinder> {
 
     override fun bind(binder: Binder.DataBinder.NoteBinder) {
         binder.bind(id, body)
