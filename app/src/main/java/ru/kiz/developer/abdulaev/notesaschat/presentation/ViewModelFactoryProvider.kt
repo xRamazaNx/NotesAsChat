@@ -4,7 +4,9 @@ import androidx.lifecycle.ViewModelProvider
 import ru.kiz.developer.abdulaev.notesaschat.data.LocalDataSource
 import ru.kiz.developer.abdulaev.notesaschat.domain.interact.ChatInteractor
 import ru.kiz.developer.abdulaev.notesaschat.domain.interact.NoteInteractor
-import ru.kiz.developer.abdulaev.notesaschat.presentation.mapper.NoteToUiMapper
+import ru.kiz.developer.abdulaev.notesaschat.presentation.chat.ChatViewModelFactory
+import ru.kiz.developer.abdulaev.notesaschat.presentation.note.NoteToUiMapper
+import ru.kiz.developer.abdulaev.notesaschat.presentation.note.NoteViewModelFactory
 
 @Suppress("UNCHECKED_CAST")
 interface ViewModelFactoryProvider {

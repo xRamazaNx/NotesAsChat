@@ -1,4 +1,4 @@
-package ru.kiz.developer.abdulaev.notesaschat.presentation.activity
+package ru.kiz.developer.abdulaev.notesaschat.presentation.note
 
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -6,10 +6,10 @@ import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.kiz.developer.abdulaev.notesaschat.app
 import ru.kiz.developer.abdulaev.notesaschat.databinding.ActivityNotesBinding
-import ru.kiz.developer.abdulaev.notesaschat.presentation.NoteUi
+import ru.kiz.developer.abdulaev.notesaschat.presentation.CommonActivity
+import ru.kiz.developer.abdulaev.notesaschat.presentation.chat.ChatActivity
 import ru.kiz.developer.abdulaev.notesaschat.presentation.view.AbstractHolder
-import ru.kiz.developer.abdulaev.notesaschat.presentation.view.note.NoteAdapter
-import ru.kiz.developer.abdulaev.notesaschat.presentation.viewmodel.NoteViewModel
+import ru.kiz.developer.abdulaev.notesaschat.presentation.note.view.NoteAdapter
 
 @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
 class NotesActivity : CommonActivity(), AbstractHolder.ClickListener<NoteUi> {

@@ -1,4 +1,4 @@
-package ru.kiz.developer.abdulaev.notesaschat.presentation.activity
+package ru.kiz.developer.abdulaev.notesaschat.presentation.chat
 
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -9,10 +9,10 @@ import ru.kiz.developer.abdulaev.notesaschat.app
 import ru.kiz.developer.abdulaev.notesaschat.core.Binder
 import ru.kiz.developer.abdulaev.notesaschat.core.Binder.DataBinder
 import ru.kiz.developer.abdulaev.notesaschat.databinding.ActivityChatBinding
-import ru.kiz.developer.abdulaev.notesaschat.presentation.activity_launcher.NoteActivityLauncher
+import ru.kiz.developer.abdulaev.notesaschat.presentation.CommonActivity
+import ru.kiz.developer.abdulaev.notesaschat.presentation.note.NoteActivityLauncher
 import ru.kiz.developer.abdulaev.notesaschat.presentation.view.AbstractHolder
-import ru.kiz.developer.abdulaev.notesaschat.presentation.view.chat.ChatAdapter
-import ru.kiz.developer.abdulaev.notesaschat.presentation.viewmodel.ChatViewModel
+import ru.kiz.developer.abdulaev.notesaschat.presentation.chat.view.ChatAdapter
 
 
 @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")

@@ -1,4 +1,4 @@
-package ru.kiz.developer.abdulaev.notesaschat.presentation.activity_launcher
+package ru.kiz.developer.abdulaev.notesaschat.presentation
 
 import android.content.Intent
 import androidx.activity.result.ActivityResultLauncher

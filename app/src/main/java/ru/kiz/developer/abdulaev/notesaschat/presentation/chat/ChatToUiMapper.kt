@@ -1,7 +1,6 @@
-package ru.kiz.developer.abdulaev.notesaschat.presentation.mapper
+package ru.kiz.developer.abdulaev.notesaschat.presentation.chat
 
 import ru.kiz.developer.abdulaev.notesaschat.core.Mapper
-import ru.kiz.developer.abdulaev.notesaschat.presentation.ChatUi
 
 class ChatToUiMapper : Mapper.DataMapper.ChatMapper<ChatUi> {
     override fun map(id: Long, name: String, lastNote: String): ChatUi {

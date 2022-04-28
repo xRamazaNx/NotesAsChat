@@ -1,4 +1,4 @@
-package ru.kiz.developer.abdulaev.notesaschat.presentation.viewmodel
+package ru.kiz.developer.abdulaev.notesaschat.presentation.note
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -6,8 +6,8 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import ru.kiz.developer.abdulaev.notesaschat.domain.interact.NoteInteractor
-import ru.kiz.developer.abdulaev.notesaschat.presentation.NoteUi
 import ru.kiz.developer.abdulaev.notesaschat.presentation.UiUpdater
+import ru.kiz.developer.abdulaev.notesaschat.presentation.AbstractViewModel
 
 class NoteViewModel(
     private val noteInteractor: NoteInteractor<NoteUi>

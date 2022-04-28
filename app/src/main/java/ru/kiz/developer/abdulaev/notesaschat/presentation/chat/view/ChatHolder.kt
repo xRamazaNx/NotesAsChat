@@ -1,9 +1,9 @@
-package ru.kiz.developer.abdulaev.notesaschat.presentation.view.chat
+package ru.kiz.developer.abdulaev.notesaschat.presentation.chat.view
 
 import android.view.View
 import ru.kiz.developer.abdulaev.notesaschat.core.Binder
 import ru.kiz.developer.abdulaev.notesaschat.databinding.ChatViewBinding
-import ru.kiz.developer.abdulaev.notesaschat.presentation.ChatUi
+import ru.kiz.developer.abdulaev.notesaschat.presentation.chat.ChatUi
 import ru.kiz.developer.abdulaev.notesaschat.presentation.view.AbstractHolder
 
 class ChatHolder(

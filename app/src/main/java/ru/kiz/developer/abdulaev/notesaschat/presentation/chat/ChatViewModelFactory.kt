@@ -1,9 +1,8 @@
-package ru.kiz.developer.abdulaev.notesaschat.presentation
+package ru.kiz.developer.abdulaev.notesaschat.presentation.chat
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import ru.kiz.developer.abdulaev.notesaschat.domain.interact.ChatInteractor
-import ru.kiz.developer.abdulaev.notesaschat.presentation.viewmodel.ChatViewModel
 
 @Suppress("UNCHECKED_CAST")
 class ChatViewModelFactory(

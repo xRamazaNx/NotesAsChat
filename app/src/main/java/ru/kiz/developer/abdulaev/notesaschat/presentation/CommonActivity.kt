@@ -1,8 +1,7 @@
-package ru.kiz.developer.abdulaev.notesaschat.presentation.activity
+package ru.kiz.developer.abdulaev.notesaschat.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
-import ru.kiz.developer.abdulaev.notesaschat.presentation.UiUpdater
 
 abstract class CommonActivity : AppCompatActivity(), UiUpdater.ActivityUpdater {
     protected lateinit var recycler: RecyclerView

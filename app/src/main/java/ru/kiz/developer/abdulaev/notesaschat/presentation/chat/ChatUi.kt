@@ -1,7 +1,8 @@
-package ru.kiz.developer.abdulaev.notesaschat.presentation
+package ru.kiz.developer.abdulaev.notesaschat.presentation.chat
 
 import ru.kiz.developer.abdulaev.notesaschat.core.Binder
 import ru.kiz.developer.abdulaev.notesaschat.core.ContentEqual
+import ru.kiz.developer.abdulaev.notesaschat.presentation.SelectionState
 
 class ChatUi(
     private val id: Long,

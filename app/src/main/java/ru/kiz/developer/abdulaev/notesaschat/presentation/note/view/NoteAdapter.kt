@@ -1,8 +1,8 @@
-package ru.kiz.developer.abdulaev.notesaschat.presentation.view.note
+package ru.kiz.developer.abdulaev.notesaschat.presentation.note.view
 
 import android.view.ViewGroup
 import ru.kiz.developer.abdulaev.notesaschat.R
-import ru.kiz.developer.abdulaev.notesaschat.presentation.NoteUi
+import ru.kiz.developer.abdulaev.notesaschat.presentation.note.NoteUi
 import ru.kiz.developer.abdulaev.notesaschat.presentation.view.AbstractAdapter
 import ru.kiz.developer.abdulaev.notesaschat.presentation.view.AbstractHolder
 import ru.kiz.developer.abdulaev.notesaschat.utils.inflate

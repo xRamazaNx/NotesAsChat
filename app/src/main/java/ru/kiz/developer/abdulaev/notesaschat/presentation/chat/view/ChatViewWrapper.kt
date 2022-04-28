@@ -1,4 +1,4 @@
-package ru.kiz.developer.abdulaev.notesaschat.presentation.view.chat
+package ru.kiz.developer.abdulaev.notesaschat.presentation.chat.view
 
 import android.view.View
 import ru.kiz.developer.abdulaev.notesaschat.databinding.ChatViewBinding

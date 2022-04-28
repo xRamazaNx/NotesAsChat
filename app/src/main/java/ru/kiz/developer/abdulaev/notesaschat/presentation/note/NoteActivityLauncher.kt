@@ -1,11 +1,11 @@
-package ru.kiz.developer.abdulaev.notesaschat.presentation.activity_launcher
+package ru.kiz.developer.abdulaev.notesaschat.presentation.note
 
 import android.app.Activity
 import android.content.Intent
 import androidx.activity.result.contract.ActivityResultContracts
 import ru.kiz.developer.abdulaev.notesaschat.core.Binder
-import ru.kiz.developer.abdulaev.notesaschat.presentation.activity.ChatActivity
-import ru.kiz.developer.abdulaev.notesaschat.presentation.activity.NotesActivity
+import ru.kiz.developer.abdulaev.notesaschat.presentation.ResultLauncher
+import ru.kiz.developer.abdulaev.notesaschat.presentation.chat.ChatActivity
 
 class NoteActivityLauncher(
     chatActivity: ChatActivity,

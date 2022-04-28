@@ -1,4 +1,4 @@
-package ru.kiz.developer.abdulaev.notesaschat.presentation.view.note
+package ru.kiz.developer.abdulaev.notesaschat.presentation.note.view
 
 import android.view.View
 import ru.kiz.developer.abdulaev.notesaschat.databinding.NoteViewBinding

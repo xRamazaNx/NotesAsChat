@@ -1,11 +1,10 @@
-package ru.kiz.developer.abdulaev.notesaschat.presentation.viewmodel
+package ru.kiz.developer.abdulaev.notesaschat.presentation
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import ru.kiz.developer.abdulaev.notesaschat.presentation.UiUpdater
 
 abstract class AbstractViewModel<T, U : UiUpdater.ActivityUpdater> : ViewModel() {
     abstract val showAllLiveData: MutableLiveData<List<T>>
