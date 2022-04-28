@@ -1,20 +1,18 @@
 package ru.kiz.developer.abdulaev.notesaschat.presentation.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import ru.kiz.developer.abdulaev.notesaschat.domain.interact.NoteInteractor
-import ru.kiz.developer.abdulaev.notesaschat.domain.model.Note
+import ru.kiz.developer.abdulaev.notesaschat.presentation.NoteUi
 import ru.kiz.developer.abdulaev.notesaschat.presentation.UiUpdater
 
 class NoteViewModel(
-    private val noteInteractor: NoteInteractor
-) : AbstractViewModel<Note, UiUpdater.ActivityUpdater>() {
-    override val showAllLiveData = MutableLiveData<List<Note>>()
+    private val noteInteractor: NoteInteractor<NoteUi>
+) : AbstractViewModel<NoteUi, UiUpdater.ActivityUpdater>() {
+    override val showAllLiveData = MutableLiveData<List<NoteUi>>()
     override var uiAction: UiUpdater.ActivityUpdater? = null
 
     fun addNewNote(
@@ -32,15 +30,6 @@ class NoteViewModel(
     override fun showAll(dispatcher: CoroutineDispatcher) {
         viewModelScope.launch(dispatcher) {
             updateUI(noteInteractor.allNotes())
-        }
-    }
-
-    class NoteViewModelFactory(
-        private val noteInteract: NoteInteractor
-    ) : ViewModelProvider.Factory {
-        @Suppress("UNCHECKED_CAST")
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return NoteViewModel(noteInteract) as T
         }
     }
 }

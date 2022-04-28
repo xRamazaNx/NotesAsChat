@@ -2,14 +2,14 @@ package ru.kiz.developer.abdulaev.notesaschat.presentation.view.note
 
 import android.view.ViewGroup
 import ru.kiz.developer.abdulaev.notesaschat.R
-import ru.kiz.developer.abdulaev.notesaschat.domain.model.Note
-import ru.kiz.developer.abdulaev.notesaschat.utils.inflate
+import ru.kiz.developer.abdulaev.notesaschat.presentation.NoteUi
 import ru.kiz.developer.abdulaev.notesaschat.presentation.view.AbstractAdapter
 import ru.kiz.developer.abdulaev.notesaschat.presentation.view.AbstractHolder
+import ru.kiz.developer.abdulaev.notesaschat.utils.inflate
 
 class NoteAdapter(
-    clickListener: AbstractHolder.ClickListener<Note>
-) : AbstractAdapter<Note, NoteHolder>(clickListener) {
+    clickListener: AbstractHolder.ClickListener<NoteUi>
+) : AbstractAdapter<NoteUi, NoteHolder>(clickListener) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,

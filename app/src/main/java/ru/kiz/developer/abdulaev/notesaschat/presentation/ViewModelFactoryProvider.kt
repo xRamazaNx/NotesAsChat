@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModelProvider
 import ru.kiz.developer.abdulaev.notesaschat.data.LocalDataSource
 import ru.kiz.developer.abdulaev.notesaschat.domain.interact.ChatInteractor
 import ru.kiz.developer.abdulaev.notesaschat.domain.interact.NoteInteractor
+import ru.kiz.developer.abdulaev.notesaschat.presentation.mapper.NoteToUiMapper
 
 @Suppress("UNCHECKED_CAST")
 interface ViewModelFactoryProvider {
@@ -25,7 +26,8 @@ interface ViewModelFactoryProvider {
         override fun noteViewModelFactory(chatId: Long): ViewModelProvider.Factory {
             val noteInteractor = NoteInteractor.Base(
                 chatId,
-                dataSource.noteDataSource()
+                dataSource.noteDataSource(),
+                NoteToUiMapper()
             )
             return NoteViewModelFactory(noteInteractor)
         }

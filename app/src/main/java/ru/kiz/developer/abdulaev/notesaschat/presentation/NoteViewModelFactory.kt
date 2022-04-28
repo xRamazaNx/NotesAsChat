@@ -7,7 +7,7 @@ import ru.kiz.developer.abdulaev.notesaschat.presentation.viewmodel.NoteViewMode
 
 @Suppress("UNCHECKED_CAST")
 class NoteViewModelFactory(
-    private val noteInteractor: NoteInteractor
+    private val noteInteractor: NoteInteractor<NoteUi>
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return NoteViewModel(noteInteractor) as T

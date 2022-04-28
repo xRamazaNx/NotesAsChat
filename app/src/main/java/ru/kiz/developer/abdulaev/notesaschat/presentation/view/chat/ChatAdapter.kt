@@ -3,14 +3,14 @@ package ru.kiz.developer.abdulaev.notesaschat.presentation.view.chat
 import android.view.ViewGroup
 import ru.kiz.developer.abdulaev.notesaschat.R
 import ru.kiz.developer.abdulaev.notesaschat.core.Binder
-import ru.kiz.developer.abdulaev.notesaschat.domain.model.Chat
+import ru.kiz.developer.abdulaev.notesaschat.presentation.ChatUi
 import ru.kiz.developer.abdulaev.notesaschat.presentation.view.AbstractAdapter
 import ru.kiz.developer.abdulaev.notesaschat.presentation.view.AbstractHolder
 import ru.kiz.developer.abdulaev.notesaschat.utils.inflate
 
 class ChatAdapter(
     clickListener: AbstractHolder.ClickListener<Binder<Binder.DataBinder.ChatBinder>>
-) : AbstractAdapter<Chat, ChatHolder>(ChatClickListenerWrapper(clickListener)) {
+) : AbstractAdapter<ChatUi, ChatHolder>(ChatClickListenerWrapper(clickListener)) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -22,9 +22,12 @@ class ChatAdapter(
 
     private class ChatClickListenerWrapper(
         private val clickListener: AbstractHolder.ClickListener<Binder<Binder.DataBinder.ChatBinder>>
-    ) :
-        AbstractHolder.ClickListener<Chat> {
-        override fun onClick(t: Chat) {
+    ) : AbstractHolder.ClickListener<ChatUi> {
+        override fun onClick(t: ChatUi) {
+            clickListener.onClick(t)
+        }
+
+        override fun onLongClick(t: ChatUi) {
             clickListener.onClick(t)
         }
     }

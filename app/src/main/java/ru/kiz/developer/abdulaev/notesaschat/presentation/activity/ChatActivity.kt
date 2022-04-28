@@ -38,6 +38,10 @@ class ChatActivity : CommonActivity(), AbstractHolder.ClickListener<Binder<DataB
         noteActivityResultLauncher.launch(binder)
     }
 
+
+    override fun onLongClick(t: Binder<DataBinder.ChatBinder>) {
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)

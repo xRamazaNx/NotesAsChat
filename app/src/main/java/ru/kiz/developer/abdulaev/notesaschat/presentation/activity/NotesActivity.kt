@@ -6,13 +6,13 @@ import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.kiz.developer.abdulaev.notesaschat.app
 import ru.kiz.developer.abdulaev.notesaschat.databinding.ActivityNotesBinding
-import ru.kiz.developer.abdulaev.notesaschat.domain.model.Note
+import ru.kiz.developer.abdulaev.notesaschat.presentation.NoteUi
 import ru.kiz.developer.abdulaev.notesaschat.presentation.view.AbstractHolder
 import ru.kiz.developer.abdulaev.notesaschat.presentation.view.note.NoteAdapter
 import ru.kiz.developer.abdulaev.notesaschat.presentation.viewmodel.NoteViewModel
 
 @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
-class NotesActivity : CommonActivity(), AbstractHolder.ClickListener<Note> {
+class NotesActivity : CommonActivity(), AbstractHolder.ClickListener<NoteUi> {
     private val chatId: Long by lazy {
         intent.getLongExtra(ChatActivity.IEK_chatId, -1L)
     }
@@ -59,7 +59,11 @@ class NotesActivity : CommonActivity(), AbstractHolder.ClickListener<Note> {
         recycler.adapter = adapter
     }
 
-    override fun onClick(note: Note) {
+    override fun onClick(note: NoteUi) {
+        // TODO: Handle it later
+    }
+
+    override fun onLongClick(t: NoteUi) {
         // TODO: Handle it later
     }
 
