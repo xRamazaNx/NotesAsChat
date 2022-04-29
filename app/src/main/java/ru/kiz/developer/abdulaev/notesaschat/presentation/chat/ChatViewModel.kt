@@ -39,8 +39,8 @@ class ChatViewModel(
         }
     }
 
-    override fun handleClick(item: ChatUi, dispatcher: CoroutineDispatcher) {
-        if (selectionHandler.isSelect()) {
+    override fun handleClick(item: ChatUi, isLongClick: Boolean, dispatcher: CoroutineDispatcher) {
+        if (isLongClick || selectionHandler.isSelect()) {
             selectionHandler.handle(item)
             updateState()
         } else

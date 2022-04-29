@@ -1,29 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="?android:attr/selectableItemBackground"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:padding="16dp">
 
-    <TextView
-        android:id="@+id/chatName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:lines="1"
-        android:maxLines="1"
-        android:text="Notes"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+    <ImageButton
+        android:id="@+id/checkIcon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="center|start"
+        android:scaleX="0"
+        android:scaleY="0"
+        android:src="@drawable/ic_check_circle"
+        app:tint="?attr/buttonTint"
+        tools:ignore="ContentDescription" />
 
-    <TextView
-        android:id="@+id/lastNote"
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/infoContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:ellipsize="end"
-        android:maxLines="2"
-        android:text="example last note in this chat"
-        android:textSize="14sp" />
-</LinearLayout>
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/chatName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
+            android:maxLines="1"
+            android:text="Notes"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/lastNote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="example last note in this chat"
+            android:textSize="14sp" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</FrameLayout>

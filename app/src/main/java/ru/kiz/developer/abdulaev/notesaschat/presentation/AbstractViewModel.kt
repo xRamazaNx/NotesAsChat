@@ -11,7 +11,7 @@ abstract class AbstractViewModel<T, U : UiUpdater.ActivityUpdater> : ViewModel()
     protected abstract var activityUpdater: U?
     protected abstract val selectionHandler: SelectionHandler<T>
     abstract fun showAll(dispatcher: CoroutineDispatcher = Dispatchers.IO)
-    abstract fun handleClick(item: T, dispatcher: CoroutineDispatcher = Dispatchers.IO)
+    abstract fun handleClick(item: T, isLongClick:Boolean, dispatcher: CoroutineDispatcher = Dispatchers.IO)
     abstract fun deleteItems(dispatcher: CoroutineDispatcher = Dispatchers.IO)
 
     fun updatedDataList(item: T): List<T> {

@@ -1,17 +1,26 @@
 package ru.kiz.developer.abdulaev.notesaschat.presentation.view
 
 import android.view.View
+import androidx.annotation.CallSuper
 import ru.kiz.developer.abdulaev.notesaschat.presentation.ViewState
+import splitties.dimensions.dp
+
+private const val checkIconWidth = 24F
+private const val marginBetweenCheckIconAndInfoContainer = 16F
+private const val translationOffset = checkIconWidth + marginBetweenCheckIconAndInfoContainer
 
 abstract class ViewWrapper(
     private val root: View
-) : ViewState <Boolean>{
-    private var isSelect: Boolean = false
-
-    override fun switchState(): Boolean {
-        isSelect = !isSelect
-        val offsetX = if (isSelect) 100f else 0f
+) : ViewState.SwitchStateListener<Boolean> {
+    @CallSuper
+    override fun onSwitchState(state: Boolean) {
+        val offsetX = if (state) root.dp(translationOffset) else 0f
         root.animate().translationX(offsetX).start()
-        return isSelect
+    }
+
+    @CallSuper
+    override fun onBindState(state: Boolean) {
+        val offsetX = if (state) root.dp(translationOffset) else 0f
+        root.translationX = offsetX
     }
 }

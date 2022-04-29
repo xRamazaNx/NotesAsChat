@@ -6,7 +6,8 @@ import ru.kiz.developer.abdulaev.notesaschat.presentation.view.ViewWrapper
 
 class ChatViewWrapper(
     chatViewBinding: ChatViewBinding
-) : ViewWrapper(chatViewBinding.root), Mapper.DataMapper.ChatMapper<Unit> {
+) : ViewWrapper(chatViewBinding.infoContainer), Mapper.DataMapper.ChatMapper<Unit> {
+    private val checkIcon = chatViewBinding.checkIcon
     private val name = chatViewBinding.chatName
     private val lastNote = chatViewBinding.lastNote
     override fun map(id: Long, name: String, lastNote: String) {
@@ -14,4 +15,23 @@ class ChatViewWrapper(
         this.lastNote.text = lastNote
     }
 
+    override fun onSwitchState(state: Boolean) {
+        super.onSwitchState(state)
+        val scale = if (state) 1f else 0f
+        checkIcon.animate()
+            .scaleX(scale)
+            .scaleY(scale)
+            .start()
+        checkIcon.animate()
+            .alpha(scale)
+            .start()
+    }
+
+    override fun onBindState(state: Boolean) {
+        super.onBindState(state)
+        val scale = if (state) 1f else 0f
+        checkIcon.scaleX = scale
+        checkIcon.scaleY = scale
+        checkIcon.alpha = scale
+    }
 }

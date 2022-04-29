@@ -35,7 +35,7 @@ class NoteViewModel(
         }
     }
 
-    override fun handleClick(item: NoteUi, dispatcher: CoroutineDispatcher) {
+    override fun handleClick(item: NoteUi, isLongClick: Boolean, dispatcher: CoroutineDispatcher) {
         // TODO: impl late
     }
 

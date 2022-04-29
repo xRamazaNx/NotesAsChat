@@ -35,7 +35,7 @@ class ChatActivity : CommonActivity(), AbstractHolder.ClickListener<ChatUi>,
     }
 
     override fun onClick(chatUi: ChatUi) {
-        viewModel.handleClick(chatUi)
+        viewModel.handleClick(chatUi, false)
     }
 
     override fun openChat(chatUi: ChatUi) {
@@ -43,6 +43,7 @@ class ChatActivity : CommonActivity(), AbstractHolder.ClickListener<ChatUi>,
     }
 
     override fun onLongClick(chatUi: ChatUi) {
+        viewModel.handleClick(chatUi, true)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
