@@ -6,7 +6,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-abstract class AbstractViewModel<T, U : UiUpdater.ActivityUpdater> : ViewModel() {
+abstract class AbstractViewModel<T, U : UiUpdater.ActivityUpdater> : ViewModel(), BackPressHandler {
     abstract val showAllLiveData: MutableLiveData<List<T>>
     protected abstract var activityUpdater: U?
     protected abstract val selectionHandler: SelectionHandler<T>
@@ -52,5 +52,14 @@ abstract class AbstractViewModel<T, U : UiUpdater.ActivityUpdater> : ViewModel()
     override fun onCleared() {
         activityUpdater = null
         super.onCleared()
+    }
+
+    override fun backPressed(): Boolean {
+        if (selectionHandler.isSelect()) {
+            selectionHandler.clear()
+            updateState()
+            return true
+        }
+        return false
     }
 }
