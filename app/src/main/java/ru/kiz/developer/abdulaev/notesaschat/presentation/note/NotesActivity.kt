@@ -7,12 +7,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import ru.kiz.developer.abdulaev.notesaschat.app
 import ru.kiz.developer.abdulaev.notesaschat.databinding.ActivityNotesBinding
 import ru.kiz.developer.abdulaev.notesaschat.presentation.CommonActivity
+import ru.kiz.developer.abdulaev.notesaschat.presentation.UiUpdater.ActivityUpdater.NoteActivityUpdater
 import ru.kiz.developer.abdulaev.notesaschat.presentation.chat.ChatActivity
 import ru.kiz.developer.abdulaev.notesaschat.presentation.note.view.NoteAdapter
 import ru.kiz.developer.abdulaev.notesaschat.presentation.view.AbstractHolder
 
 @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
-class NotesActivity : CommonActivity(), AbstractHolder.ClickListener<NoteUi> {
+class NotesActivity : CommonActivity(), NoteActivityUpdater, AbstractHolder.ClickListener<NoteUi> {
     private val chatId: Long by lazy {
         intent.getLongExtra(ChatActivity.IEK_chatId, -1L)
     }
