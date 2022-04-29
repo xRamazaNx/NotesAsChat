@@ -61,6 +61,7 @@ class ChatViewModel(
                 )
             selectionHandler.clear()
             showAll()
+            updateState()
         }
     }
 }
