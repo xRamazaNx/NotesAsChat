@@ -9,7 +9,6 @@ import ru.kiz.developer.abdulaev.notesaschat.domain.interact.NoteInteractor
 import ru.kiz.developer.abdulaev.notesaschat.presentation.AbstractViewModel
 import ru.kiz.developer.abdulaev.notesaschat.presentation.SelectionHandler
 import ru.kiz.developer.abdulaev.notesaschat.presentation.UiUpdater
-import ru.kiz.developer.abdulaev.notesaschat.presentation.chat.ChatUi
 
 class NoteViewModel(
     private val noteInteractor: NoteInteractor<NoteUi>,
@@ -36,7 +35,7 @@ class NoteViewModel(
         }
     }
 
-    override fun handleClick(item: ChatUi, dispatcher: CoroutineDispatcher) {
+    override fun handleClick(item: NoteUi, dispatcher: CoroutineDispatcher) {
         // TODO: impl late
     }
 

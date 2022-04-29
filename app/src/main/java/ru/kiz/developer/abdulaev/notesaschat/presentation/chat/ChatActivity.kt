@@ -7,15 +7,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import ru.kiz.developer.abdulaev.notesaschat.app
 import ru.kiz.developer.abdulaev.notesaschat.databinding.ActivityChatBinding
-import ru.kiz.developer.abdulaev.notesaschat.presentation.ChatOpenIntentMapper
 import ru.kiz.developer.abdulaev.notesaschat.presentation.CommonActivity
+import ru.kiz.developer.abdulaev.notesaschat.presentation.UiUpdater.ActivityUpdater.ChatActivityUpdater
 import ru.kiz.developer.abdulaev.notesaschat.presentation.chat.view.ChatAdapter
 import ru.kiz.developer.abdulaev.notesaschat.presentation.note.NoteActivityLauncher
 import ru.kiz.developer.abdulaev.notesaschat.presentation.view.AbstractHolder
 
 
 @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
-class ChatActivity : CommonActivity(), AbstractHolder.ClickListener<ChatUi> {
+class ChatActivity : CommonActivity(), AbstractHolder.ClickListener<ChatUi>,
+    ChatActivityUpdater<ChatUi> {
     companion object {
         const val IEK_chatId = "chat_id" // Intent Extra Key
         const val IEK_chatName = "chat_name" // Intent Extra Key
@@ -34,11 +35,12 @@ class ChatActivity : CommonActivity(), AbstractHolder.ClickListener<ChatUi> {
     }
 
     override fun onClick(chatUi: ChatUi) {
-        noteActivityResultLauncher.launch(
-            chatUi.map(ChatOpenIntentMapper(this))
-        )
+        viewModel.handleClick(chatUi)
     }
 
+    override fun openChat(chatUi: ChatUi) {
+        noteActivityResultLauncher.launch(chatUi.map(ChatOpenIntentMapper(this)))
+    }
 
     override fun onLongClick(chatUi: ChatUi) {
     }
@@ -54,6 +56,14 @@ class ChatActivity : CommonActivity(), AbstractHolder.ClickListener<ChatUi> {
             adapter.setList(chats)
         }
         viewModel.showAll()
+    }
+
+    override fun defaultState() {
+        // TODO: set def menu
+    }
+
+    override fun selectionState() {
+        // TODO: set selection menu
     }
 
     override fun initViews() {

@@ -5,14 +5,13 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import ru.kiz.developer.abdulaev.notesaschat.presentation.chat.ChatUi
 
 abstract class AbstractViewModel<T, U : UiUpdater.ActivityUpdater> : ViewModel() {
     abstract val showAllLiveData: MutableLiveData<List<T>>
     protected abstract var activityUpdater: U?
     protected abstract val selectionHandler: SelectionHandler<T>
     abstract fun showAll(dispatcher: CoroutineDispatcher = Dispatchers.IO)
-    abstract fun handleClick(item: ChatUi, dispatcher: CoroutineDispatcher = Dispatchers.IO)
+    abstract fun handleClick(item: T, dispatcher: CoroutineDispatcher = Dispatchers.IO)
     abstract fun deleteItems(dispatcher: CoroutineDispatcher = Dispatchers.IO)
 
     fun updatedDataList(item: T): List<T> {
@@ -27,11 +26,7 @@ abstract class AbstractViewModel<T, U : UiUpdater.ActivityUpdater> : ViewModel()
     @JvmName("setPresenterF")
     fun setUiAction(UiAction: U) {
         this.activityUpdater = UiAction
-    }
-
-    override fun onCleared() {
-        activityUpdater = null
-        super.onCleared()
+        updateState()
     }
 
     suspend fun updateUI(updatedList: List<T>) = withContext(Dispatchers.Main) {
@@ -45,5 +40,17 @@ abstract class AbstractViewModel<T, U : UiUpdater.ActivityUpdater> : ViewModel()
 
     fun reload(isNeed: Boolean) {
         if (isNeed) showAll()
+    }
+
+    protected fun updateState() {
+        if (selectionHandler.isSelect())
+            activityUpdater?.selectionState()
+        else
+            activityUpdater?.defaultState()
+    }
+
+    override fun onCleared() {
+        activityUpdater = null
+        super.onCleared()
     }
 }
