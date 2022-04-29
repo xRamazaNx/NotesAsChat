@@ -1,9 +1,8 @@
-package ru.kiz.developer.abdulaev.notesaschat.presentation
+package ru.kiz.developer.abdulaev.notesaschat.presentation.chat
 
 import android.content.Context
 import android.content.Intent
 import ru.kiz.developer.abdulaev.notesaschat.core.Mapper
-import ru.kiz.developer.abdulaev.notesaschat.presentation.chat.ChatActivity
 import ru.kiz.developer.abdulaev.notesaschat.presentation.note.NotesActivity
 
 class ChatOpenIntentMapper(context: Context) : Mapper.DataMapper.ChatMapper<Intent> {
