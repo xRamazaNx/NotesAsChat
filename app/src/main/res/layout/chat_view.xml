@@ -34,7 +34,8 @@
             android:maxLines="1"
             android:text="Notes"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:id="@+id/lastNote"
@@ -44,6 +45,7 @@
             android:ellipsize="end"
             android:maxLines="2"
             android:text="example last note in this chat"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            tools:ignore="HardcodedText" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 </FrameLayout>
