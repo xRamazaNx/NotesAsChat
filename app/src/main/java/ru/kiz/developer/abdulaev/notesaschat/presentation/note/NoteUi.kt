@@ -1,16 +1,16 @@
 package ru.kiz.developer.abdulaev.notesaschat.presentation.note
 
-import ru.kiz.developer.abdulaev.notesaschat.core.Binder
 import ru.kiz.developer.abdulaev.notesaschat.core.ContentEqual
+import ru.kiz.developer.abdulaev.notesaschat.core.Mapper
 import ru.kiz.developer.abdulaev.notesaschat.presentation.SelectionState
 
 data class NoteUi(
     private val id: Long,
     private val body: String
-) : SelectionState(), Binder<Binder.DataBinder.NoteBinder> {
+) : SelectionState(), ContentEqual {
 
-    override fun bind(binder: Binder.DataBinder.NoteBinder) {
-        binder.bind(id, body)
+    fun <T> map(mapper: Mapper.DataMapper.NoteMapper<T>): T {
+        return mapper.map(id, body)
     }
 
     override fun isEqualId(content: ContentEqual): Boolean {

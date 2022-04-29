@@ -5,11 +5,16 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import ru.kiz.developer.abdulaev.notesaschat.presentation.chat.ChatUi
 
 abstract class AbstractViewModel<T, U : UiUpdater.ActivityUpdater> : ViewModel() {
     abstract val showAllLiveData: MutableLiveData<List<T>>
-    protected abstract var uiAction: U?
+    protected abstract var activityUpdater: U?
+    protected abstract val selectionHandler: SelectionHandler<T>
     abstract fun showAll(dispatcher: CoroutineDispatcher = Dispatchers.IO)
+    abstract fun handleClick(item: ChatUi, dispatcher: CoroutineDispatcher = Dispatchers.IO)
+    abstract fun deleteItems(dispatcher: CoroutineDispatcher = Dispatchers.IO)
+
     fun updatedDataList(item: T): List<T> {
         val newList = mutableListOf<T>()
         showAllLiveData.value?.let { noteList ->
@@ -21,11 +26,11 @@ abstract class AbstractViewModel<T, U : UiUpdater.ActivityUpdater> : ViewModel()
 
     @JvmName("setPresenterF")
     fun setUiAction(UiAction: U) {
-        this.uiAction = UiAction
+        this.activityUpdater = UiAction
     }
 
     override fun onCleared() {
-        uiAction = null
+        activityUpdater = null
         super.onCleared()
     }
 
@@ -35,7 +40,7 @@ abstract class AbstractViewModel<T, U : UiUpdater.ActivityUpdater> : ViewModel()
 
     protected fun scrollToLast(list: List<T>) {
         if (list.isNotEmpty())
-            uiAction?.smoothScrollTo(list.lastIndex)
+            activityUpdater?.smoothScrollTo(list.lastIndex)
     }
 
     fun reload(isNeed: Boolean) {

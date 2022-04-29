@@ -6,14 +6,17 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import ru.kiz.developer.abdulaev.notesaschat.domain.interact.NoteInteractor
-import ru.kiz.developer.abdulaev.notesaschat.presentation.UiUpdater
 import ru.kiz.developer.abdulaev.notesaschat.presentation.AbstractViewModel
+import ru.kiz.developer.abdulaev.notesaschat.presentation.SelectionHandler
+import ru.kiz.developer.abdulaev.notesaschat.presentation.UiUpdater
+import ru.kiz.developer.abdulaev.notesaschat.presentation.chat.ChatUi
 
 class NoteViewModel(
-    private val noteInteractor: NoteInteractor<NoteUi>
+    private val noteInteractor: NoteInteractor<NoteUi>,
 ) : AbstractViewModel<NoteUi, UiUpdater.ActivityUpdater>() {
+    override val selectionHandler = SelectionHandler.NoteSelectionHandler()
     override val showAllLiveData = MutableLiveData<List<NoteUi>>()
-    override var uiAction: UiUpdater.ActivityUpdater? = null
+    override var activityUpdater: UiUpdater.ActivityUpdater? = null
 
     fun addNewNote(
         body: String,
@@ -31,5 +34,13 @@ class NoteViewModel(
         viewModelScope.launch(dispatcher) {
             updateUI(noteInteractor.allNotes())
         }
+    }
+
+    override fun handleClick(item: ChatUi, dispatcher: CoroutineDispatcher) {
+        // TODO: impl late
+    }
+
+    override fun deleteItems(dispatcher: CoroutineDispatcher) {
+        // TODO: impl late
     }
 }

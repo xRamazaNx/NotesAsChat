@@ -1,17 +1,17 @@
 package ru.kiz.developer.abdulaev.notesaschat.presentation.chat
 
-import ru.kiz.developer.abdulaev.notesaschat.core.Binder
 import ru.kiz.developer.abdulaev.notesaschat.core.ContentEqual
+import ru.kiz.developer.abdulaev.notesaschat.core.Mapper
 import ru.kiz.developer.abdulaev.notesaschat.presentation.SelectionState
 
 class ChatUi(
     private val id: Long,
     private val name: String,
     private val lastNote: String
-) : SelectionState(), Binder<Binder.DataBinder.ChatBinder> {
+) : SelectionState(), Mapper, ContentEqual {
 
-    override fun bind(binder: Binder.DataBinder.ChatBinder) {
-        binder.bind(id, name, lastNote)
+    fun <T> map(mapper: Mapper.DataMapper.ChatMapper<T>): T {
+        return mapper.map(id, name, lastNote)
     }
 
     override fun isEqualId(content: ContentEqual): Boolean {

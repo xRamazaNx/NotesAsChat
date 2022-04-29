@@ -5,9 +5,8 @@ import android.widget.LinearLayout
 import androidx.annotation.CallSuper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import ru.kiz.developer.abdulaev.notesaschat.presentation.SelectionState
 
-abstract class AbstractHolder<T : SelectionState, V : ViewWrapper>(
+abstract class AbstractHolder<T, V : ViewWrapper>(
     view: View
 ) : ViewHolder(view) {
     protected abstract val viewWrapper: V
@@ -21,7 +20,6 @@ abstract class AbstractHolder<T : SelectionState, V : ViewWrapper>(
 
     @CallSuper
     open fun bindHolder(t: T, clickListener: ClickListener<T>) {
-        t.updateViewWrapper(viewWrapper)
         itemView.setOnClickListener {
             clickListener.onClick(t)
         }
