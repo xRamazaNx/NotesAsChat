@@ -6,7 +6,6 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import ru.kiz.developer.abdulaev.notesaschat.domain.ChatUiToDomainMapper
-import ru.kiz.developer.abdulaev.notesaschat.domain.interact.CaseDeleteItems
 import ru.kiz.developer.abdulaev.notesaschat.domain.interact.ChatInteractor
 import ru.kiz.developer.abdulaev.notesaschat.presentation.AbstractViewModel
 import ru.kiz.developer.abdulaev.notesaschat.presentation.SelectionHandler
@@ -50,15 +49,7 @@ class ChatViewModel(
 
     override fun deleteItems(dispatcher: CoroutineDispatcher) {
         viewModelScope.launch(dispatcher) {
-            CaseDeleteItems
-                .CaseDeleteChats(chatInteractor)
-                .delete(
-                    selectionHandler.giveSelectedItems()
-                        .fold(mutableListOf()) { list, ui ->
-                            list.add(ui.map(ChatUiToDomainMapper()))
-                            list
-                        }
-                )
+            chatInteractor.delete(selectionHandler.mapSelectedItems(ChatUiToDomainMapper()))
             selectionHandler.clear()
             showAll()
             updateState()

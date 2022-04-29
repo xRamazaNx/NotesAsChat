@@ -13,8 +13,8 @@ class ChatRoomDataSource(
         return create(e.name)
     }
 
-    override fun remove(e: ChatEntity) {
-        dao.remove(ChatRoomEntity(e))
+    override fun delete(e: ChatEntity) {
+        dao.delete(ChatRoomEntity(e))
     }
 
     override fun create(name: String): Long {

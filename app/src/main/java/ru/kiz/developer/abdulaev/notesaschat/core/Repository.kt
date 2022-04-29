@@ -4,7 +4,7 @@ interface Repository<T> {
     fun getById(id: Long): T?
     fun getAll(): List<T>
     fun add(e: T): Long
-    fun remove(e: T)
+    fun delete(e: T)
 
     interface ChatRepo<T> : Repository<T> {
         fun create(name: String): Long

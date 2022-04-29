@@ -34,7 +34,7 @@ class NoteRoomDataSource(
         return create(e.chatId, e.body)
     }
 
-    override fun remove(e: NoteEntity) {
-        dao.remove(NoteRoomEntity(e))
+    override fun delete(e: NoteEntity) {
+        dao.delete(NoteRoomEntity(e))
     }
 }

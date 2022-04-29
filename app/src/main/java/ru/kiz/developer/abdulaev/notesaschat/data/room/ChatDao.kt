@@ -17,5 +17,5 @@ interface ChatDao : Repository<ChatRoomEntity> {
     override fun add(e: ChatRoomEntity): Long
 
     @Delete
-    override fun remove(e: ChatRoomEntity)
+    override fun delete(e: ChatRoomEntity)
 }

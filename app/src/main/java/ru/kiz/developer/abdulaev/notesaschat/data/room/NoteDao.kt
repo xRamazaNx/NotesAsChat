@@ -20,7 +20,7 @@ interface NoteDao : Repository<NoteRoomEntity> {
     override fun add(e: NoteRoomEntity): Long
 
     @Delete
-    override fun remove(e: NoteRoomEntity)
+    override fun delete(e: NoteRoomEntity)
 
     @Query("Select * FROM NoteRoomEntity where chatId = :id")
     fun allOfChat(id: Long): List<NoteRoomEntity>

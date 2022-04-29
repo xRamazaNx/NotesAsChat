@@ -2,10 +2,11 @@ package ru.kiz.developer.abdulaev.notesaschat.domain.interact
 
 import ru.kiz.developer.abdulaev.notesaschat.core.Mapper.DataMapper
 import ru.kiz.developer.abdulaev.notesaschat.core.Repository
+import ru.kiz.developer.abdulaev.notesaschat.data.NoteDomainToDataMapper
 import ru.kiz.developer.abdulaev.notesaschat.data.NoteEntity
 import ru.kiz.developer.abdulaev.notesaschat.domain.model.Note
 
-interface NoteInteractor<U> : Interactor {
+interface NoteInteractor<U> : Interactor<Note> {
     fun note(id: Long): U?
     fun allNotes(): List<U>
     fun addNote(body: String): U
@@ -32,6 +33,12 @@ interface NoteInteractor<U> : Interactor {
         override fun addNote(body: String): U {
             return noteRepo.create(chatId, body).let { noteEntityId ->
                 note(noteEntityId)!!
+            }
+        }
+
+        override fun delete(items: List<Note>) {
+            items.forEach { note ->
+                noteRepo.delete(note.map(NoteDomainToDataMapper(chatId)))
             }
         }
     }

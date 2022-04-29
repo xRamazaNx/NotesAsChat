@@ -10,5 +10,5 @@ class ChatDomainToDataMapper : Mapper.DataMapper.ChatMapper<ChatEntity> {
     private class ChatEntityForMap(
         override var id: Long,
         override val name: String
-    ) : ChatEntity()
+    ) : ChatEntity
 }

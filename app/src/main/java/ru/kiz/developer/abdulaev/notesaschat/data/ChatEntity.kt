@@ -1,6 +1,6 @@
 package ru.kiz.developer.abdulaev.notesaschat.data
 
-abstract class ChatEntity {
-    abstract var id: Long
-    abstract val name: String
+interface ChatEntity {
+    var id: Long
+    val name: String
 }
