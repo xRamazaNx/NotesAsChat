@@ -42,11 +42,11 @@ class NotesActivity : CommonActivity(), AbstractHolder.ClickListener<NoteUi> {
         viewModel.showAll()
     }
 
-    override fun defaultState() {
+    override fun defaultState() = runOnUiThread {
         // TODO: set def menu
     }
 
-    override fun selectionState() {
+    override fun selectionState() = runOnUiThread {
         // TODO: set selection menu
     }
 
