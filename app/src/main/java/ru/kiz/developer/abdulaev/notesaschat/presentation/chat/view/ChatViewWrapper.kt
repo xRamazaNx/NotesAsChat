@@ -6,7 +6,7 @@ import ru.kiz.developer.abdulaev.notesaschat.presentation.view.ViewWrapper
 
 class ChatViewWrapper(
     chatViewBinding: ChatViewBinding
-) : ViewWrapper(chatViewBinding.infoContainer), Mapper.DataMapper.ChatMapper<Unit> {
+) : ViewWrapper(chatViewBinding.infoContainer), Mapper.ChatMapper<Unit> {
     private val checkIcon = chatViewBinding.checkIcon
     private val name = chatViewBinding.chatName
     private val lastNote = chatViewBinding.lastNote

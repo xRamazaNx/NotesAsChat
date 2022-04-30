@@ -6,7 +6,7 @@ import ru.kiz.developer.abdulaev.notesaschat.presentation.view.ViewWrapper
 
 class NoteViewWrapper(
     noteViewBinding: NoteViewBinding
-) : ViewWrapper(noteViewBinding.root), Mapper.DataMapper.NoteMapper<Unit> {
+) : ViewWrapper(noteViewBinding.root), Mapper.NoteMapper<Unit> {
     private val note = noteViewBinding.note
     override fun map(id: Long, body: String) {
         note.text = body

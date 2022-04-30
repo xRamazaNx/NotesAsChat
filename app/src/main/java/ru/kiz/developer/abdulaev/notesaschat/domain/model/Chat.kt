@@ -17,7 +17,7 @@ data class Chat(
         lastNote
     )
 
-    fun <T> map(mapper: Mapper.DataMapper.ChatMapper<T>): T {
+    fun <T> map(mapper: Mapper.ChatMapper<T>): T {
         return mapper.map(id, name, lastNote)
     }
 }

@@ -1,6 +1,6 @@
 package ru.kiz.developer.abdulaev.notesaschat.domain.interact
 
-import ru.kiz.developer.abdulaev.notesaschat.core.Mapper.DataMapper
+import ru.kiz.developer.abdulaev.notesaschat.core.Mapper
 import ru.kiz.developer.abdulaev.notesaschat.core.Repository
 import ru.kiz.developer.abdulaev.notesaschat.data.mapper.NoteDomainToDataMapper
 import ru.kiz.developer.abdulaev.notesaschat.data.NoteEntity
@@ -14,7 +14,7 @@ interface NoteInteractor<U> : Interactor<Note> {
     class Base<U>(
         private val chatId: Long,
         private val noteRepo: Repository.NoteRepo<NoteEntity>,
-        private val noteToUiMapper: DataMapper.NoteMapper<U>
+        private val noteToUiMapper: Mapper.NoteMapper<U>
     ) : NoteInteractor<U> {
 
         override fun note(id: Long): U? {

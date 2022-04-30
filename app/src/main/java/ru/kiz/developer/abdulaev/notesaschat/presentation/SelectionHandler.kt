@@ -1,7 +1,6 @@
 package ru.kiz.developer.abdulaev.notesaschat.presentation
 
-import ru.kiz.developer.abdulaev.notesaschat.core.Mapper.DataMapper.ChatMapper
-import ru.kiz.developer.abdulaev.notesaschat.core.Mapper.DataMapper.NoteMapper
+import ru.kiz.developer.abdulaev.notesaschat.core.Mapper
 import ru.kiz.developer.abdulaev.notesaschat.presentation.chat.ChatUi
 import ru.kiz.developer.abdulaev.notesaschat.presentation.note.NoteUi
 
@@ -29,7 +28,7 @@ interface SelectionHandler<T> {
     }
 
     class ChatSelectionHandler : AbstractSelectionHandler<ChatUi>() {
-        fun <R> mapSelectedItems(mapper: ChatMapper<R>): List<R> {
+        fun <R> mapSelectedItems(mapper: Mapper.ChatMapper<R>): List<R> {
             return selectedItems.fold(mutableListOf()) { list, chatUi ->
                 list.add(chatUi.map(mapper))
                 list
@@ -38,7 +37,7 @@ interface SelectionHandler<T> {
     }
 
     class NoteSelectionHandler : AbstractSelectionHandler<NoteUi>() {
-        fun <R> mapSelectedItems(mapper: NoteMapper<R>): List<R> {
+        fun <R> mapSelectedItems(mapper: Mapper.NoteMapper<R>): List<R> {
             return selectedItems.fold(mutableListOf()) { list, noteUi ->
                 list.add(noteUi.map(mapper))
                 list

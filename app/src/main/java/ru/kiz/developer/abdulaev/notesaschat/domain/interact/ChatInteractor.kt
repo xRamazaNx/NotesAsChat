@@ -1,6 +1,6 @@
 package ru.kiz.developer.abdulaev.notesaschat.domain.interact
 
-import ru.kiz.developer.abdulaev.notesaschat.core.Mapper.DataMapper
+import ru.kiz.developer.abdulaev.notesaschat.core.Mapper
 import ru.kiz.developer.abdulaev.notesaschat.core.Repository
 import ru.kiz.developer.abdulaev.notesaschat.data.ChatEntity
 import ru.kiz.developer.abdulaev.notesaschat.data.NoteEntity
@@ -9,8 +9,8 @@ import ru.kiz.developer.abdulaev.notesaschat.domain.model.Chat
 
 interface ChatInteractor : Interactor<Chat> {
     fun chat(id: Long): Chat?
-    fun <T> allChats(chatToUiMapper: DataMapper.ChatMapper<T>): List<T>
-    fun <T> addChat(name: String, chatToUiMapper: DataMapper.ChatMapper<T>): T
+    fun <T> allChats(chatToUiMapper: Mapper.ChatMapper<T>): List<T>
+    fun <T> addChat(name: String, chatToUiMapper: Mapper.ChatMapper<T>): T
 
     class Base(
         private val chatRepo: Repository.ChatRepo<ChatEntity>,
@@ -22,14 +22,14 @@ interface ChatInteractor : Interactor<Chat> {
             }
         }
 
-        override fun <T> allChats(chatToUiMapper: DataMapper.ChatMapper<T>): List<T> {
+        override fun <T> allChats(chatToUiMapper: Mapper.ChatMapper<T>): List<T> {
             return chatRepo.getAll().fold(mutableListOf()) { list, chatEntity ->
                 list.add(mapToChat(chatEntity).map(chatToUiMapper))
                 list
             }
         }
 
-        override fun <T> addChat(name: String, chatToUiMapper: DataMapper.ChatMapper<T>): T {
+        override fun <T> addChat(name: String, chatToUiMapper: Mapper.ChatMapper<T>): T {
             return chatRepo.create(name).let { chatEntityId ->
                 chat(chatEntityId)!!.map(chatToUiMapper)
             }

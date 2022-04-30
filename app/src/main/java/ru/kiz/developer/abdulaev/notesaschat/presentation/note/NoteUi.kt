@@ -9,7 +9,7 @@ data class NoteUi(
     private val body: String
 ) : SelectionState(), ContentEqual {
 
-    fun <T> map(mapper: Mapper.DataMapper.NoteMapper<T>): T {
+    fun <T> map(mapper: Mapper.NoteMapper<T>): T {
         return mapper.map(id, body)
     }
 

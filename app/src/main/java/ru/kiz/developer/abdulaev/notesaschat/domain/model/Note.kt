@@ -11,7 +11,7 @@ data class Note(
         noteEntity: NoteEntity
     ) : this(noteEntity.id, noteEntity.body)
 
-    fun <T> map(mapper: Mapper.DataMapper.NoteMapper<T>): T {
+    fun <T> map(mapper: Mapper.NoteMapper<T>): T {
         return mapper.map(id, body)
     }
 }

@@ -5,7 +5,7 @@ import ru.kiz.developer.abdulaev.notesaschat.data.NoteEntity
 
 class NoteDomainToDataMapper(
     private val chatId: Long
-) : Mapper.DataMapper.NoteMapper<NoteEntity> {
+) : Mapper.NoteMapper<NoteEntity> {
 
     override fun map(id: Long, body: String): NoteEntity {
         return NoteEntityForMap(id = id, chatId = chatId, body = body)
