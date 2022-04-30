@@ -12,6 +12,7 @@ import ru.kiz.developer.abdulaev.notesaschat.presentation.UiUpdater.ActivityUpda
 import ru.kiz.developer.abdulaev.notesaschat.presentation.chat.view.ChatAdapter
 import ru.kiz.developer.abdulaev.notesaschat.presentation.mapper.ChatOpenIntentMapper
 import ru.kiz.developer.abdulaev.notesaschat.presentation.note.NoteActivityLauncher
+import ru.kiz.developer.abdulaev.notesaschat.presentation.note.NotesActivity
 import ru.kiz.developer.abdulaev.notesaschat.presentation.view.AbstractHolder
 
 
@@ -40,7 +41,9 @@ class ChatActivity : CommonActivity(), AbstractHolder.ClickListener<ChatUi>,
     }
 
     override fun openChat(chatUi: ChatUi) {
-        noteActivityResultLauncher.launch(chatUi.map(ChatOpenIntentMapper(this)))
+        val intentMapper = ChatOpenIntentMapper(this, NotesActivity::class.java)
+        val intent = chatUi.map(intentMapper)
+        noteActivityResultLauncher.launch(intent)
     }
 
     override fun onLongClick(chatUi: ChatUi) {
