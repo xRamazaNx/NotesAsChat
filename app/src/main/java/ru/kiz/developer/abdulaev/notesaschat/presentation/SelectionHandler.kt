@@ -13,7 +13,7 @@ interface SelectionHandler<T> {
 
     abstract class AbstractSelectionHandler<T : ViewState<Boolean>, R> :
         SelectionHandler<T> {
-        protected val selectedItems = mutableSetOf<T>()
+        private val selectedItems = mutableSetOf<T>()
 
         override fun isSelect() = selectedItems.isNotEmpty()
 
