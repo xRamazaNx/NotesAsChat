@@ -23,7 +23,7 @@ class NoteViewModel(
         dispatcher: CoroutineDispatcher = Dispatchers.IO
     ) {
         viewModelScope.launch(dispatcher) {
-            val note = noteInteractor.addNote(body)
+            val note = noteInteractor.insert(body)
             val updatedList = updatedDataList(note)
             updateUI(updatedList)
             scrollToLast(updatedList)
@@ -32,7 +32,7 @@ class NoteViewModel(
 
     override fun showAll(dispatcher: CoroutineDispatcher) {
         viewModelScope.launch(dispatcher) {
-            updateUI(noteInteractor.allNotes())
+            updateUI(noteInteractor.all())
         }
     }
 

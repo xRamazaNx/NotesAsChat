@@ -9,8 +9,8 @@ import ru.kiz.developer.abdulaev.notesaschat.domain.model.Chat
 
 interface ChatInteractor : Interactor<Chat> {
     fun chat(id: Long): Chat?
-    fun <T> allChats(chatToUiMapper: Mapper.ChatMapper<T>): List<T>
-    fun <T> addChat(name: String, chatToUiMapper: Mapper.ChatMapper<T>): T
+    fun <T> insert(name: String, chatToUiMapper: Mapper.ChatMapper<T>): T
+    fun <T> all(chatToUiMapper: Mapper.ChatMapper<T>): List<T>
 
     class Base(
         private val chatRepo: Repository.ChatRepo<ChatEntity>,
@@ -22,14 +22,14 @@ interface ChatInteractor : Interactor<Chat> {
             }
         }
 
-        override fun <T> allChats(chatToUiMapper: Mapper.ChatMapper<T>): List<T> {
+        override fun <T> all(chatToUiMapper: Mapper.ChatMapper<T>): List<T> {
             return chatRepo.getAll().fold(mutableListOf()) { list, chatEntity ->
                 list.add(mapToChat(chatEntity).map(chatToUiMapper))
                 list
             }
         }
 
-        override fun <T> addChat(name: String, chatToUiMapper: Mapper.ChatMapper<T>): T {
+        override fun <T> insert(name: String, chatToUiMapper: Mapper.ChatMapper<T>): T {
             return chatRepo.create(name).let { chatEntityId ->
                 chat(chatEntityId)!!.map(chatToUiMapper)
             }

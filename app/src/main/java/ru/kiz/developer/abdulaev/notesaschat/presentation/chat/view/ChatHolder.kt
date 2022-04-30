@@ -13,6 +13,5 @@ class ChatHolder(
     override fun bindHolder(t: ChatUi, clickListener: ClickListener<ChatUi>) {
         super.bindHolder(t, clickListener)
         t.map(viewWrapper)
-        t.setSwitchStateListener(viewWrapper)
     }
 }

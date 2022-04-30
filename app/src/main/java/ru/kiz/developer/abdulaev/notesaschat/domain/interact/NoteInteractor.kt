@@ -8,8 +8,9 @@ import ru.kiz.developer.abdulaev.notesaschat.domain.model.Note
 
 interface NoteInteractor<U> : Interactor<Note> {
     fun note(id: Long): U?
-    fun allNotes(): List<U>
-    fun addNote(body: String): U
+    fun insert(body: String): U
+    /** retrieves all chat notes*/
+    fun all(): List<U>
 
     class Base<U>(
         private val chatId: Long,
@@ -23,14 +24,14 @@ interface NoteInteractor<U> : Interactor<Note> {
             }
         }
 
-        override fun allNotes(): List<U> {
+        override fun all(): List<U> {
             return noteRepo.notesOfChat(chatId).fold(mutableListOf()) { list, noteEntity ->
                 list.add(Note(noteEntity).map(noteToUiMapper))
                 list
             }
         }
 
-        override fun addNote(body: String): U {
+        override fun insert(body: String): U {
             return noteRepo.create(chatId, body).let { noteEntityId ->
                 note(noteEntityId)!!
             }

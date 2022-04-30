@@ -26,7 +26,7 @@ class ChatViewModel(
         dispatcher: CoroutineDispatcher = Dispatchers.IO
     ) {
         viewModelScope.launch(dispatcher) {
-            val chat = chatInteractor.addChat(name, chatToUiMapper)
+            val chat = chatInteractor.insert(name, chatToUiMapper)
             val updatedList = updatedDataList(chat)
             updateUI(updatedList)
             scrollToLast(updatedList)
@@ -35,7 +35,7 @@ class ChatViewModel(
 
     override fun showAll(dispatcher: CoroutineDispatcher) {
         viewModelScope.launch(dispatcher) {
-            val chats = chatInteractor.allChats(chatToUiMapper)
+            val chats = chatInteractor.all(chatToUiMapper)
             showAllLiveData.postValue(chats)
         }
     }
