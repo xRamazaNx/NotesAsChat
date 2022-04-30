@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">NotesAsChat</string>
     <string name="note">Note</string>
+    <string name="delete">Delete</string>
 </resources>

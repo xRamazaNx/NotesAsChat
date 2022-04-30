@@ -60,11 +60,11 @@ class ChatActivity : CommonActivity(), AbstractHolder.ClickListener<ChatUi>,
     }
 
     override fun defaultState() = runOnUiThread {
-        // TODO: set def menu
+        // TODO: set def menu R.menu.chat_main_menu
     }
 
     override fun selectionState() = runOnUiThread {
-        // TODO: set selection menu
+        // TODO: set selection menu R.menu.chat_selection_menu
     }
 
     override fun initViews() {
