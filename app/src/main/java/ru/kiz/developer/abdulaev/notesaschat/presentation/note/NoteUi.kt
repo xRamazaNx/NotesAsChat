@@ -1,14 +1,14 @@
 package ru.kiz.developer.abdulaev.notesaschat.presentation.note
 
 import ru.kiz.developer.abdulaev.notesaschat.core.ContentEqual
-import ru.kiz.developer.abdulaev.notesaschat.core.MapContract
+import ru.kiz.developer.abdulaev.notesaschat.core.MapObject
 import ru.kiz.developer.abdulaev.notesaschat.core.Mapper
 import ru.kiz.developer.abdulaev.notesaschat.presentation.SelectionState
 
 data class NoteUi(
     private val id: Long,
     private val body: String
-) : SelectionState(), ContentEqual, MapContract.NoteMapContract {
+) : SelectionState(), ContentEqual, MapObject.NoteMapObject {
 
     override fun <R> map(mapper: Mapper.NoteMapper<R>): R {
         return mapper.map(id, body)

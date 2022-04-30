@@ -1,11 +1,11 @@
 package ru.kiz.developer.abdulaev.notesaschat.core
 
-interface MapContract {
-    interface ChatMapContract {
+interface MapObject {
+    interface ChatMapObject {
         fun <T> map(mapper: Mapper.ChatMapper<T>): T
     }
 
-    interface NoteMapContract {
+    interface NoteMapObject {
         fun <T> map(mapper: Mapper.NoteMapper<T>): T
     }
 }

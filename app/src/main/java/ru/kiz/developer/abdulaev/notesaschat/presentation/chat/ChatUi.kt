@@ -1,7 +1,7 @@
 package ru.kiz.developer.abdulaev.notesaschat.presentation.chat
 
 import ru.kiz.developer.abdulaev.notesaschat.core.ContentEqual
-import ru.kiz.developer.abdulaev.notesaschat.core.MapContract
+import ru.kiz.developer.abdulaev.notesaschat.core.MapObject
 import ru.kiz.developer.abdulaev.notesaschat.core.Mapper
 import ru.kiz.developer.abdulaev.notesaschat.presentation.SelectionState
 
@@ -9,7 +9,7 @@ class ChatUi(
     private val id: Long,
     private val name: String,
     private val lastNote: String
-) : SelectionState(), Mapper, ContentEqual, MapContract.ChatMapContract {
+) : SelectionState(), Mapper, ContentEqual, MapObject.ChatMapObject {
 
     override fun <R> map(mapper: Mapper.ChatMapper<R>): R {
         return mapper.map(id, name, lastNote)
