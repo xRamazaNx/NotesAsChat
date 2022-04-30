@@ -2,7 +2,7 @@ package ru.kiz.developer.abdulaev.notesaschat.domain.interact
 
 import ru.kiz.developer.abdulaev.notesaschat.core.Mapper.DataMapper
 import ru.kiz.developer.abdulaev.notesaschat.core.Repository
-import ru.kiz.developer.abdulaev.notesaschat.data.NoteDomainToDataMapper
+import ru.kiz.developer.abdulaev.notesaschat.data.mapper.NoteDomainToDataMapper
 import ru.kiz.developer.abdulaev.notesaschat.data.NoteEntity
 import ru.kiz.developer.abdulaev.notesaschat.domain.model.Note
 

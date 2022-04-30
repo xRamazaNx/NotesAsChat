@@ -10,6 +10,7 @@ import ru.kiz.developer.abdulaev.notesaschat.databinding.ActivityChatBinding
 import ru.kiz.developer.abdulaev.notesaschat.presentation.CommonActivity
 import ru.kiz.developer.abdulaev.notesaschat.presentation.UiUpdater.ActivityUpdater.ChatActivityUpdater
 import ru.kiz.developer.abdulaev.notesaschat.presentation.chat.view.ChatAdapter
+import ru.kiz.developer.abdulaev.notesaschat.presentation.mapper.ChatOpenIntentMapper
 import ru.kiz.developer.abdulaev.notesaschat.presentation.note.NoteActivityLauncher
 import ru.kiz.developer.abdulaev.notesaschat.presentation.view.AbstractHolder
 

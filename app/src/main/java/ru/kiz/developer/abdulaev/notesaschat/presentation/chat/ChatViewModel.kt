@@ -10,6 +10,7 @@ import ru.kiz.developer.abdulaev.notesaschat.domain.interact.ChatInteractor
 import ru.kiz.developer.abdulaev.notesaschat.presentation.AbstractViewModel
 import ru.kiz.developer.abdulaev.notesaschat.presentation.SelectionHandler
 import ru.kiz.developer.abdulaev.notesaschat.presentation.UiUpdater.ActivityUpdater.ChatActivityUpdater
+import ru.kiz.developer.abdulaev.notesaschat.presentation.mapper.ChatToUiMapper
 
 private val chatToUiMapper = ChatToUiMapper()
 

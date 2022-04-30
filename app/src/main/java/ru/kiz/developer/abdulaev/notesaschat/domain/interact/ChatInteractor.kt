@@ -4,7 +4,7 @@ import ru.kiz.developer.abdulaev.notesaschat.core.Mapper.DataMapper
 import ru.kiz.developer.abdulaev.notesaschat.core.Repository
 import ru.kiz.developer.abdulaev.notesaschat.data.ChatEntity
 import ru.kiz.developer.abdulaev.notesaschat.data.NoteEntity
-import ru.kiz.developer.abdulaev.notesaschat.data.ChatDomainToDataMapper
+import ru.kiz.developer.abdulaev.notesaschat.data.mapper.ChatDomainToDataMapper
 import ru.kiz.developer.abdulaev.notesaschat.domain.model.Chat
 
 interface ChatInteractor : Interactor<Chat> {

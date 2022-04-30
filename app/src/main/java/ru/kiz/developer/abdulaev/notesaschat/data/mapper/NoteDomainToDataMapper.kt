@@ -1,6 +1,7 @@
-package ru.kiz.developer.abdulaev.notesaschat.data
+package ru.kiz.developer.abdulaev.notesaschat.data.mapper
 
 import ru.kiz.developer.abdulaev.notesaschat.core.Mapper
+import ru.kiz.developer.abdulaev.notesaschat.data.NoteEntity
 
 class NoteDomainToDataMapper(
     private val chatId: Long

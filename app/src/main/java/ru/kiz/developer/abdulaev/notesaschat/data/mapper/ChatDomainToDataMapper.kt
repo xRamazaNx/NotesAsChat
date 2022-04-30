@@ -1,6 +1,7 @@
-package ru.kiz.developer.abdulaev.notesaschat.data
+package ru.kiz.developer.abdulaev.notesaschat.data.mapper
 
 import ru.kiz.developer.abdulaev.notesaschat.core.Mapper
+import ru.kiz.developer.abdulaev.notesaschat.data.ChatEntity
 
 class ChatDomainToDataMapper : Mapper.DataMapper.ChatMapper<ChatEntity> {
     override fun map(id: Long, name: String, lastNote: String): ChatEntity {
