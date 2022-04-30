@@ -9,7 +9,7 @@ class ChatRoomDataSource(
     private val dao: ChatDao
 ) : Repository.ChatRepo<ChatEntity> {
 
-    override fun add(e: ChatEntity): Long {
+    override fun insert(e: ChatEntity): Long {
         return create(e.name)
     }
 
@@ -18,7 +18,7 @@ class ChatRoomDataSource(
     }
 
     override fun create(name: String): Long {
-        return dao.add(ChatRoomEntity(name))
+        return dao.insert(ChatRoomEntity(name))
     }
 
     override fun getById(id: Long): ChatEntity? {

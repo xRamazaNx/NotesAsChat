@@ -14,7 +14,7 @@ interface ChatDao : Repository<ChatRoomEntity> {
     override fun getAll(): List<ChatRoomEntity>
 
     @Insert(onConflict = REPLACE)
-    override fun add(e: ChatRoomEntity): Long
+    override fun insert(e: ChatRoomEntity): Long
 
     @Delete
     override fun delete(e: ChatRoomEntity)

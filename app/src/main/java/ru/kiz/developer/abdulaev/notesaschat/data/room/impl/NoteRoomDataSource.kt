@@ -19,7 +19,7 @@ class NoteRoomDataSource(
     }
 
     override fun create(chatId: Long, body: String): Long {
-        return dao.add(NoteRoomEntity(body, chatId))
+        return dao.insert(NoteRoomEntity(body, chatId))
     }
 
     override fun getById(id: Long): NoteEntity? {
@@ -30,7 +30,7 @@ class NoteRoomDataSource(
         return dao.getAll()
     }
 
-    override fun add(e: NoteEntity): Long {
+    override fun insert(e: NoteEntity): Long {
         return create(e.chatId, e.body)
     }
 

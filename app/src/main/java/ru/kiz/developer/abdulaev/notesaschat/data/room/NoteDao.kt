@@ -17,7 +17,7 @@ interface NoteDao : Repository<NoteRoomEntity> {
     override fun getAll(): List<NoteRoomEntity>
 
     @Insert(onConflict = REPLACE)
-    override fun add(e: NoteRoomEntity): Long
+    override fun insert(e: NoteRoomEntity): Long
 
     @Delete
     override fun delete(e: NoteRoomEntity)

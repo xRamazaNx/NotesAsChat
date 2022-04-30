@@ -3,7 +3,7 @@ package ru.kiz.developer.abdulaev.notesaschat.core
 interface Repository<T> {
     fun getById(id: Long): T?
     fun getAll(): List<T>
-    fun add(e: T): Long
+    fun insert(e: T): Long
     fun delete(e: T)
 
     interface ChatRepo<T> : Repository<T> {
