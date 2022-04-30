@@ -6,14 +6,15 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import ru.kiz.developer.abdulaev.notesaschat.domain.interact.NoteInteractor
+import ru.kiz.developer.abdulaev.notesaschat.domain.model.Note
 import ru.kiz.developer.abdulaev.notesaschat.presentation.AbstractViewModel
 import ru.kiz.developer.abdulaev.notesaschat.presentation.SelectionHandler
 import ru.kiz.developer.abdulaev.notesaschat.presentation.UiUpdater
 
 class NoteViewModel(
     private val noteInteractor: NoteInteractor<NoteUi>,
+    override val selectionHandler:SelectionHandler.NoteSelectionHandler<Note>
 ) : AbstractViewModel<NoteUi, UiUpdater.ActivityUpdater>() {
-    override val selectionHandler = SelectionHandler.NoteSelectionHandler()
     override val showAllLiveData = MutableLiveData<List<NoteUi>>()
     override var activityUpdater: UiUpdater.ActivityUpdater? = null
 
