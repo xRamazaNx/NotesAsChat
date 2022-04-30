@@ -50,6 +50,12 @@ class ChatActivity : CommonActivity(), AbstractHolder.ClickListener<ChatUi>,
         viewModel.handleClick(chatUi, true)
     }
 
+    override fun onBackPressed() {
+        if (viewModel.backPressed())
+            return
+        super.onBackPressed()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)

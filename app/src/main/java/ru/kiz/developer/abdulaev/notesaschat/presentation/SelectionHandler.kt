@@ -26,6 +26,7 @@ interface SelectionHandler<T> {
         }
 
         override fun clear() {
+            selectedItems.forEach { it.switchState() }
             selectedItems.clear()
         }
 
