@@ -3,7 +3,7 @@ package ru.kiz.developer.abdulaev.notesaschat.data.room.impl
 import android.content.Context
 import androidx.room.Room
 import ru.kiz.developer.abdulaev.notesaschat.data.LocalDataSource
-import ru.kiz.developer.abdulaev.notesaschat.data.room.AbstractRoom
+import ru.kiz.developer.abdulaev.notesaschat.data.room.RoomDataBase
 
 class RoomDataSource(
     databaseName: String,
@@ -15,7 +15,7 @@ class RoomDataSource(
     init {
         val room = Room.databaseBuilder(
             context,
-            AbstractRoom::class.java,
+            RoomDataBase::class.java,
             databaseName
         ).build()
 
